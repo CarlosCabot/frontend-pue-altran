@@ -1,0 +1,59 @@
+{
+    "Preguntas": [
+		{
+			"idpregunta": 1,
+			"enunciado": "¿Como se denomina el lenguaje de estilos para navegador?",
+			"respuestas": {
+				"A": "CSS",
+				"B": "HTML",
+				"C": "Javascript",
+				"D": "XML",
+				"solucion": "A"
+			}
+		},
+		{
+			"idpregunta": 2,
+			"enunciado": "¿Como definiriamos el software Brackets?",
+			"respuestas": {
+				"A": "como un IDE",
+				"B": "como un editor de texto",
+				"C": "como lenguaje de programación",
+				"D": "como aparatos",
+				"solucion": "B"
+			}
+		},
+		{
+			"idpregunta": 3,
+			"enunciado": "¿Donde se ejecuta el lenguaje PHP?",
+			"respuestas": {
+				"A": "En le navegador",
+				"B": "En mi casa",
+				"C": "En el servidor de aplicaciones php",
+				"D": "En ninguna de las anteriores",
+				"solucion": "C"
+			}
+		},
+		{
+			"idpregunta": 4,
+			"enunciado": "¿Las siglas HTML son de?",
+			"respuestas": {
+				"A": "Lenguaje de Programación de Hipertexto",
+				"B": "Lenguaje de Marcas de Ropa",
+				"C": "HyperText Markdown Language",
+				"D": "Lenguaje de Marcas de Hipertexto",
+				"solucion": "D"
+			}
+		},
+		{
+			"idpregunta": 5,
+			"enunciado": "¿Finalizaremos el proyecto a tiempo?",
+			"respuestas": {
+				"A": "Puede",
+				"B": "No",
+				"C": "Hombre claro",
+				"D": "¿Que proyecto?",
+				"solucion": "C"
+			}
+		}
+	]
+}
