@@ -72,17 +72,16 @@ $app->get('/examen/get/{idE}', function($request, $response, $args) {
     //session_destroy();
     
     $idE = $args['idE'];         
-    $sth = $this->db->prepare("SELECT examen_json, porcentaje_aprovar, tiempo_minutos FROM examen WHERE id_examen = $idE");
+    $sth = $this->db->prepare("SELECT examen_json, porcentaje_aprovar, tiempo_minutos, descripcion FROM examen WHERE id_examen = $idE");
     $sth->execute();
     $examen = $sth->fetch();   
         
     // Saving % for passing exam in $_SESSION variable
-    $porcentaje_aprovar = $examen["porcentaje_aprovar"];
-    $_SESSION ['porcentaje_aprovar'] = $porcentaje_aprovar;
+    $_SESSION ['porcentaje_aprovar'] = $examen["porcentaje_aprovar"];    
     
-    // Saving % for passing exam in $_SESSION variable
-    $tiempo_minutos = $examen["tiempo_minutos"];     
-    $_SESSION ['tiempo_minutos'] = $tiempo_minutos;        
+    // Saving time & description for response
+    $_SESSION ['tiempo_minutos'] = $examen["tiempo_minutos"];         
+    $_SESSION ['descripcion'] = $examen["descripcion"];
     
     $examen_json = $examen["examen_json"]; 
     $array_examen_frontend = json_decode($examen_json);  
@@ -102,7 +101,7 @@ $app->get('/examen/get/{idE}', function($request, $response, $args) {
     }        
         
     // retornar el tiempo en minutos
-    $response = array('tiempo' => $_SESSION ['tiempo_minutos']);
+    $response = array('descripcion' => $_SESSION ['descripcion'], 'tiempo' => $_SESSION ['tiempo_minutos']);
     return (json_encode($response, JSON_UNESCAPED_UNICODE));
 });
 
@@ -119,7 +118,7 @@ $app->get('/examen/pregunta/{idP}', function($request, $response, $args) {
 
 
 // Recibir datos a insertar en BBDD y retornar si el usuario ha aprovado, con que nota y el porcentaje de aciertos
-$app->post('/examen/finalizar', function (Request $request, Response $response){        
+$app->post('/examen/finalize', function (Request $request, Response $response){        
     //Getting parsed data from request 
     //Example data:
     //{ id_usuario: 1, id_examen: 1, fecha_hora: "2016-12-19 23:59:23", respuestas: [{id_pregunta:2, respuesta:"A"},{id_pregunta:1,respuesta:"A"}]}
@@ -147,7 +146,7 @@ $app->post('/examen/finalizar', function (Request $request, Response $response){
     $cantidad_preguntas = count($array_respuestas);
     $cantidad_aciertos = 0;
             
-    // Find out which how many answers are correct
+    // Find out how many answers are correct
     for($i=0; $i < $cantidad_preguntas; $i++){        
         $id_pregunta = $array_respuestas[$i]->{'id_pregunta'};
         $respuesta = $array_respuestas[$i]->{'respuesta'}; 
@@ -224,8 +223,9 @@ $app->post('/examen/update', function($request, $response, $args) {
     $examen_json = $examen["examen_json"]; 
     $porcentaje_aprovar = $examen["porcentaje_aprovar"];   
     $tiempo_minutos = $examen["tiempo_minutos"]; 
+    $descripcion = $examen["descripcion"]; 
           
-    $sth = $this->db->prepare("UPDATE examen SET nombre='$nombre', id_tema=$id_tema, examen_json='$examen_json', porcentaje_aprovar=$porcentaje_aprovar, tiempo_minutos=$tiempo_minutos WHERE id_examen=$id_examen");
+    $sth = $this->db->prepare("UPDATE examen SET nombre='$nombre', id_tema=$id_tema, examen_json='$examen_json', porcentaje_aprovar=$porcentaje_aprovar, tiempo_minutos=$tiempo_minutos, descripcion=$descripcion WHERE id_examen=$id_examen");
     $sth->execute();           
 });
 

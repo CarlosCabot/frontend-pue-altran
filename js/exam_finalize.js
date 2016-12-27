@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.ajax({
-        url: 'src/public/examen/finalizar'
+        url: 'src/public/examen/finalize'
         , type: 'post'        
         , dataType: "json"
         , success: function (){}
