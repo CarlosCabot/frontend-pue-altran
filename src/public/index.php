@@ -238,6 +238,29 @@ $app->post('/examen/update', function($request, $response, $args) {
     
 });*/
 
+/*
+ *   Usuarios
+ */
+
+$app->post('/user/new', function (Request $request, Response $response{
+    //Getting parsed data from request 
+    $usuario = $request->getParsedBody();    
+    
+    $login = $usuario["login"];   
+    $password = $usuario["password"];    
+    
+    if($login !== '' || $password !== ''){
+        $status = "error";
+        $descripcion = "El correo electrónico ya existe" 
+    }else{
+         $status = "success";
+        $descripcion = "Usuario añadido correctamente"   
+    }
+    
+    $response = array('status' => $status, 'descripcion' => $descripcion);
+    return (json_encode($response, JSON_UNESCAPED_UNICODE));    
+});
+
 // Example
 $app->get('/hello/{name}', function (Request $request, Response $response) {
     $name = $request->getAttribute('name');

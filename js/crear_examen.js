@@ -1,5 +1,5 @@
 //Variables globales
-var rootURL = "src/public";
+var rootURL = "../src/public";
 var array_temas;
 // Objeto JSON
 var examen = {
