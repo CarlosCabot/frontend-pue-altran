@@ -146,7 +146,6 @@ $app->post('/examen/finalize', function (Request $request, Response $response){
     $cantidad_preguntas = count($array_respuestas);
     $cantidad_aciertos = 0;
             
-    var_dump($array_respuestas);
     // Find out how many answers are correct
     for($i=0; $i < $cantidad_preguntas; $i++){        
         $id_pregunta = $array_respuestas[$i]['id_pregunta'];        
