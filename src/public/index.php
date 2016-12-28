@@ -198,12 +198,14 @@ $app->post('/examen/new', function (Request $request, Response $response){
     $nombre = $object['nombre'];   
     $id_tema = $object['id_tema'];
     $examen_json = $object['examen_json'];     
-    $porcentaje_aprobar = $object['porcentaje_aprobar'];
+    $porcentaje_aprobar = $object['porcentaje_aprobar'];    
     $tiempo_minutos = $object['tiempo_minutos']; 
     $descripcion = $object['descripcion']; 
         
-    $sth = $this->db->prepare(" INSERT INTO examen VALUES (NULL, '$nombre',  $id_tema, '$examen_json', $porcentaje_aprobar, $tiempo_minutos, '$descripcion' )");
-    $sth->execute();     
+    $sth = $this->db->prepare(" INSERT INTO examen VALUES (NULL, '$nombre', $id_tema, '$examen_json', $porcentaje_aprobar, $tiempo_minutos, '$descripcion') ");
+    $sth->execute();    
+    
+    return (json_encode(array( "status" => 'success', "descripcion" => 'Examen añadido correctamente'), JSON_UNESCAPED_UNICODE));
 });
 
 // Return the hole exam for edition purposes
@@ -242,7 +244,7 @@ $app->post('/examen/update', function($request, $response, $args) {
  *   Usuarios
  */
 
-$app->post('/user/new', function (Request $request, Response $response{
+$app->post('/user/new', function (Request $request, Response $response) {
     //Getting parsed data from request 
     $usuario = $request->getParsedBody();    
     
@@ -251,10 +253,10 @@ $app->post('/user/new', function (Request $request, Response $response{
     
     if($login !== '' || $password !== ''){
         $status = "error";
-        $descripcion = "El correo electrónico ya existe" 
+        $descripcion = "El correo electrónico ya existe"; 
     }else{
          $status = "success";
-        $descripcion = "Usuario añadido correctamente"   
+        $descripcion = "Usuario añadido correctamente";   
     }
     
     $response = array('status' => $status, 'descripcion' => $descripcion);

@@ -217,10 +217,9 @@ function removeAnswer() {
 }
 
 function sendAnswers(datosAnswers) {
-
 	$.ajax({
 		type: "POST",
-		url:  "src/public/examen/finalize",
+		url:  rootURL + "/examen/finalize",
 		contentType: 'application/json',
 		dataType: 'json',
 		data: JSON.stringify(datosAnswers),

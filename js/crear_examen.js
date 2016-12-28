@@ -6,7 +6,7 @@ var examen = {
     nombre: ""
     , id_tema: ""
     , examen_json: ""
-    , porcentaje_aprovar: undefined
+    , porcentaje_aprobar: undefined
     , tiempo_minutos: undefined
     , descripcion: ""
 }
@@ -46,7 +46,7 @@ $(function () {
     $('body').on('click', '#aceptar_tema_nombre', function () {
             examen.id_tema = $('#temaSelection option:selected').val();
             examen.nombre = $('#nombre_exam').val();
-            examen.porcentaje_aprovar = $('#porcentaje').val();
+            examen.porcentaje_aprobar = $('#porcentaje').val();
             examen.tiempo_minutos = $('#tiempo_minutos').val();
             examen.descripcion = $('#descipcion').val();
         
@@ -88,9 +88,9 @@ $(function () {
             type: 'post'
             , url: rootURL + '/examen/new'
             , dataType: "json"
-            , data: { nombre: examen.nombre, id_tema: examen.id_tema, examen_json: examen.examen_json, porcentaje_aprovar: examen.porcentaje_aprovar, tiempo_minutos: examen.tiempo_minutos, descripcion: examen.descripcion }
+            , data: { nombre: examen.nombre, id_tema: examen.id_tema, examen_json: examen.examen_json, porcentaje_aprobar: examen.porcentaje_aprobar, tiempo_minutos: examen.tiempo_minutos, descripcion: examen.descripcion }
             , success: function (data, textStatus, jqXHR) {
-                alert('Exam created successfully');
+                alert(textStatus);
             }
             , error: function (jqXHR, textStatus, errorThrown) {
                 alert('error: ' + textStatus);
