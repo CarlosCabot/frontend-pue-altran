@@ -165,21 +165,14 @@ $app->post('/examen/finalize', function (Request $request, Response $response){
     // Insert evaluacion_dellate data from this exam into database
     $json_data = json_encode($array_respuestas);
     
-    var_dump($json_data);
-    var_dump($aprobado);
-    var_dump($nota);
-    var_dump($porcentaje_aciertos);
-    var_dump($id_evaluacion);    
-    
+    // Forzamos que aprobado sea 0 si es false en vez de el default en blanco ''
     if(!$aprobado) { $aprobado = 0; };
-    
-    //INSERT INTO evaluacion_detalle VALUES (NULL, '[{"id_pregunta":1,"respuesta":"A"},{"id_pregunta":2,"respuesta":"B"},{"id_pregunta":3,"respuesta":"C"},{"id_pregunta":4,"respuesta":"D"},{"id_pregunta":5,"respuesta":"C"}]', true, 10, 100, 1);
 
     $sth = $this->db->prepare(" INSERT INTO evaluacion_detalle VALUES (NULL, '$json_data', $aprobado, $nota, $porcentaje_aciertos, $id_evaluacion) " );
     $sth->execute();       
         
     // Finally it returns the next data: aprobado, nota and porcentaje_aciertos, in JSON format
-    $result = "{aprobado: $aprobado, nota: $nota, porcentaje_aciertos: $porcentaje_aciertos}";
+    $result = array( "aprobado" => $aprobado, "nota" => $nota, "porcentaje_aciertos" => $porcentaje_aciertos);
     return (json_encode($result));
 });
 
