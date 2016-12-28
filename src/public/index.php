@@ -72,12 +72,12 @@ $app->get('/examen/get/{idE}', function($request, $response, $args) {
     //session_destroy();
     
     $idE = $args['idE'];         
-    $sth = $this->db->prepare("SELECT examen_json, porcentaje_aprovar, tiempo_minutos, descripcion FROM examen WHERE id_examen = $idE");
+    $sth = $this->db->prepare("SELECT examen_json, porcentaje_aprobar, tiempo_minutos, descripcion FROM examen WHERE id_examen = $idE");
     $sth->execute();
     $examen = $sth->fetch();   
         
     // Saving % for passing exam in $_SESSION variable
-    $_SESSION ['porcentaje_aprovar'] = $examen["porcentaje_aprovar"];    
+    $_SESSION ['porcentaje_aprobar'] = $examen["porcentaje_aprobar"];    
     
     // Saving time & description for response
     $_SESSION ['tiempo_minutos'] = $examen["tiempo_minutos"];         
@@ -117,7 +117,7 @@ $app->get('/examen/pregunta/{idP}', function($request, $response, $args) {
 });
 
 
-// Recibir datos a insertar en BBDD y retornar si el usuario ha aprovado, con que nota y el porcentaje de aciertos
+// Recibir datos a insertar en BBDD y retornar si el usuario ha aprobado, con que nota y el porcentaje de aciertos
 $app->post('/examen/finalize', function (Request $request, Response $response){        
     //Getting parsed data from request 
     //Example data:
@@ -136,7 +136,7 @@ $app->post('/examen/finalize', function (Request $request, Response $response){
     WHERE id_usuario = $id_usuario AND id_examen = $id_examen AND fecha_hora = '$fecha_hora'");
     $data = $sth->execute(); 
     $data = $sth->fetch();    
-    $id_evaluacion = $data['id_evaluacion'];
+    $id_evaluacion = intval ($data['id_evaluacion']);
         
     // Getting the exam answers data, and compare it with the solutions           
     //$array_respuestas = $object->{'respuestas'};  
@@ -146,12 +146,12 @@ $app->post('/examen/finalize', function (Request $request, Response $response){
     $cantidad_preguntas = count($array_respuestas);
     $cantidad_aciertos = 0;
             
+    var_dump($array_respuestas);
     // Find out how many answers are correct
     for($i=0; $i < $cantidad_preguntas; $i++){        
-        $id_pregunta = $array_respuestas[$i]->{'id_pregunta'};
-        $respuesta = $array_respuestas[$i]->{'respuesta'}; 
-        $solucion = $array_examen_backend[$id_pregunta-1]->{'respuestas'}->{'solucion'};        
-        
+        $id_pregunta = $array_respuestas[$i]['id_pregunta'];        
+        $respuesta = $array_respuestas[$i]['respuesta'];     
+        $solucion = $array_examen_backend[$id_pregunta-1]->{'respuestas'}->{'solucion'};           
         if($respuesta == $solucion){ //correcto!            
             $cantidad_aciertos++;            
         }                
@@ -160,15 +160,26 @@ $app->post('/examen/finalize', function (Request $request, Response $response){
     $nota = ($cantidad_aciertos*10)/$cantidad_preguntas;
     $porcentaje_aciertos = ($cantidad_aciertos*100)/$cantidad_preguntas;    
     // Saving if the user has passed the test
-    $aprovado = ($porcentaje_aciertos > $_SESSION['porcentaje_aprovar'] ? true : false); 
+    $aprobado = ($porcentaje_aciertos > $_SESSION['porcentaje_aprobar'] ? true : false); 
 
     // Insert evaluacion_dellate data from this exam into database
     $json_data = json_encode($array_respuestas);
-    $sth = $this->db->prepare("INSERT INTO evaluacion_detalle VALUES (NULL, '$json_data', $aprovado, $nota, $porcentaje_aciertos, $id_evaluacion)");
+    
+    var_dump($json_data);
+    var_dump($aprobado);
+    var_dump($nota);
+    var_dump($porcentaje_aciertos);
+    var_dump($id_evaluacion);    
+    
+    if(!$aprobado) { $aprobado = 0; };
+    
+    //INSERT INTO evaluacion_detalle VALUES (NULL, '[{"id_pregunta":1,"respuesta":"A"},{"id_pregunta":2,"respuesta":"B"},{"id_pregunta":3,"respuesta":"C"},{"id_pregunta":4,"respuesta":"D"},{"id_pregunta":5,"respuesta":"C"}]', true, 10, 100, 1);
+
+    $sth = $this->db->prepare(" INSERT INTO evaluacion_detalle VALUES (NULL, '$json_data', $aprobado, $nota, $porcentaje_aciertos, $id_evaluacion) " );
     $sth->execute();       
         
-    // Finally it returns the next data: aprovado, nota and porcentaje_aciertos, in JSON format
-    $json = '{aprovado: $aprovado, nota: $nota, porcentaje_aciertos: $porcentaje_aciertos}';
+    // Finally it returns the next data: aprobado, nota and porcentaje_aciertos, in JSON format
+    $result = "{aprobado: $aprobado, nota: $nota, porcentaje_aciertos: $porcentaje_aciertos}";
     return (json_encode($result));
 });
 
@@ -188,18 +199,18 @@ $app->post('/tema/new', function (Request $request, Response $response){
 $app->post('/examen/new', function (Request $request, Response $response){       
     //Getting parsed data from request 
     //Example data:
-    //{ nombre: 'Angular', id_tema: 1, examen_json: '[{"id_pregunta":1,"enunciado":"¿Como se denomina el lenguaje de estilos para navegador?","respuestas":{"A":"CSS","B":"HTML","C":"Javascript","D":"XML","solucion":"A"}},{"id_pregunta":2,"enunciado":"¿Como definiriamos el software Brackets?","respuestas":{"A":"como un IDE","B":"como un editor de texto","C":"como lenguaje de programación","D":"como aparatos","solucion":"B"}},{"id_pregunta":3,"enunciado":"¿Donde se ejecuta el lenguaje PHP?","respuestas":{"A":"En le navegador","B":"En mi casa","C":"En el servidor de aplicaciones php","D":"En ninguna de las anteriores","solucion":"C"}},{"id_pregunta":4,"enunciado":"¿Las siglas HTML son de?","respuestas":{"A":"Lenguaje de Programación de Hipertexto","B":"Lenguaje de Marcas de Ropa","C":"HyperText Markdown Language","D":"Lenguaje de Marcas de Hipertexto","solucion":"D"}},{"id_pregunta":5,"enunciado":"¿Finalizaremos el proyecto a tiempo?","respuestas":{"A":"Puede","B":"No","C":"Hombre claro","D":"¿Que proyecto?","solucion":"C"}}]', porcentaje_aprovar: 50, tiempo_minutos: 15, descripcion: 'esto es la descripcion'}
+    //{ nombre: 'Angular', id_tema: 1, examen_json: '[{"id_pregunta":1,"enunciado":"¿Como se denomina el lenguaje de estilos para navegador?","respuestas":{"A":"CSS","B":"HTML","C":"Javascript","D":"XML","solucion":"A"}},{"id_pregunta":2,"enunciado":"¿Como definiriamos el software Brackets?","respuestas":{"A":"como un IDE","B":"como un editor de texto","C":"como lenguaje de programación","D":"como aparatos","solucion":"B"}},{"id_pregunta":3,"enunciado":"¿Donde se ejecuta el lenguaje PHP?","respuestas":{"A":"En le navegador","B":"En mi casa","C":"En el servidor de aplicaciones php","D":"En ninguna de las anteriores","solucion":"C"}},{"id_pregunta":4,"enunciado":"¿Las siglas HTML son de?","respuestas":{"A":"Lenguaje de Programación de Hipertexto","B":"Lenguaje de Marcas de Ropa","C":"HyperText Markdown Language","D":"Lenguaje de Marcas de Hipertexto","solucion":"D"}},{"id_pregunta":5,"enunciado":"¿Finalizaremos el proyecto a tiempo?","respuestas":{"A":"Puede","B":"No","C":"Hombre claro","D":"¿Que proyecto?","solucion":"C"}}]', porcentaje_aprobar: 50, tiempo_minutos: 15, descripcion: 'esto es la descripcion'}
     $object = $request->getParsedBody();    
     
     // Extract the variables needed to insert a new evaluation into the Database
     $nombre = $object['nombre'];   
     $id_tema = $object['id_tema'];
     $examen_json = $object['examen_json'];     
-    $porcentaje_aprovar = $object['porcentaje_aprovar'];
+    $porcentaje_aprobar = $object['porcentaje_aprobar'];
     $tiempo_minutos = $object['tiempo_minutos']; 
     $descripcion = $object['descripcion']; 
         
-    $sth = $this->db->prepare(" INSERT INTO examen VALUES (NULL, '$nombre',  $id_tema, '$examen_json', $porcentaje_aprovar, $tiempo_minutos, '$descripcion' )");
+    $sth = $this->db->prepare(" INSERT INTO examen VALUES (NULL, '$nombre',  $id_tema, '$examen_json', $porcentaje_aprobar, $tiempo_minutos, '$descripcion' )");
     $sth->execute();     
 });
 
@@ -222,11 +233,11 @@ $app->post('/examen/update', function($request, $response, $args) {
     $nombre = $examen["nombre"];    
     $id_tema = $examen["id_tema"]; 
     $examen_json = $examen["examen_json"]; 
-    $porcentaje_aprovar = $examen["porcentaje_aprovar"];   
+    $porcentaje_aprobar = $examen["porcentaje_aprobar"];   
     $tiempo_minutos = $examen["tiempo_minutos"]; 
     $descripcion = $examen["descripcion"]; 
           
-    $sth = $this->db->prepare("UPDATE examen SET nombre='$nombre', id_tema=$id_tema, examen_json='$examen_json', porcentaje_aprovar=$porcentaje_aprovar, tiempo_minutos=$tiempo_minutos, descripcion=$descripcion WHERE id_examen=$id_examen");
+    $sth = $this->db->prepare("UPDATE examen SET nombre='$nombre', id_tema=$id_tema, examen_json='$examen_json', porcentaje_aprobar=$porcentaje_aprobar, tiempo_minutos=$tiempo_minutos, descripcion=$descripcion WHERE id_examen=$id_examen");
     $sth->execute();           
 });
 
