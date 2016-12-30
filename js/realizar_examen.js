@@ -236,9 +236,9 @@ function showResults(result) {
 	var aprobado;
 
 	if (result.aprobado == 0) {
-		aprobado = "NO";
-	} else {
 		aprobado = "SÍ";
+	} else {
+		aprobado = "NO";
 	}
 	var resultsHTML = '<div id="results">'
 					+ '<p>Aprobado: ' + aprobado + '</p>'

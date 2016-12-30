@@ -261,17 +261,12 @@ $app->post('/user/new', function (Request $request, Response $response) {
     $login = $usuario["login"];   
     $password = $usuario["password"];    
     
-    if($login == '' || $password == ''){
+    if($login !== '' || $password !== ''){
         $status = "error";
-        $descripcion = "Ni el correo electrónico ni la contraseña pueden estar en blanco" ;
+        $descripcion = "El correo electrónico ya existe"; 
     }else{
-        if ($login == 'paco@gmail.com') {
-            $status = "error";
-            $descripcion = "El email ya existe" ;
-        } else {
-            $status = "success";
-            $descripcion = "Usuario añadido correctamente"   ;    
-        }        
+        $status = "success";
+        $descripcion = "Usuario añadido correctamente";   
     }
     
     $response = array('status' => $status, 'descripcion' => $descripcion);
