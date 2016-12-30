@@ -198,14 +198,12 @@ $app->post('/examen/new', function (Request $request, Response $response){
     $nombre = $object['nombre'];   
     $id_tema = $object['id_tema'];
     $examen_json = $object['examen_json'];     
-    $porcentaje_aprobar = $object['porcentaje_aprobar'];    
+    $porcentaje_aprobar = $object['porcentaje_aprobar'];
     $tiempo_minutos = $object['tiempo_minutos']; 
     $descripcion = $object['descripcion']; 
         
-    $sth = $this->db->prepare(" INSERT INTO examen VALUES (NULL, '$nombre', $id_tema, '$examen_json', $porcentaje_aprobar, $tiempo_minutos, '$descripcion') ");
-    $sth->execute();    
-    
-    return (json_encode(array( "status" => 'success', "descripcion" => 'Examen añadido correctamente'), JSON_UNESCAPED_UNICODE));
+    $sth = $this->db->prepare(" INSERT INTO examen VALUES (NULL, '$nombre',  $id_tema, '$examen_json', $porcentaje_aprobar, $tiempo_minutos, '$descripcion' )");
+    $sth->execute();     
 });
 
 // Return the hole exam for edition purposes
@@ -221,28 +219,18 @@ $app->get('/examen/edition/{idE}', function($request, $response, $args) {
 $app->post('/examen/update', function($request, $response, $args) {    
     //Getting parsed data from request 
     $object = $request->getParsedBody();    
-       
-    $id_examen = $object["id_examen"]; 
-    $nombre = $object["nombre"];    
-    $id_tema = $object["id_tema"]; 
-    $examen_json = $object["examen_json"]; 
-    $porcentaje_aprobar = $object["porcentaje_aprobar"];   
-    $tiempo_minutos = $object["tiempo_minutos"]; 
-    $descripcion = $object["descripcion"];           
-       
-    $sth = $this->db->prepare("UPDATE examen SET nombre='$nombre', id_tema=$id_tema, examen_json='$examen_json', porcentaje_aprobar=$porcentaje_aprobar, tiempo_minutos=$tiempo_minutos, descripcion='$descripcion' WHERE id_examen=$id_examen");
     
-    try{
-        $sth->execute(); 
-        $status = "success";
-        $data = "Examen actualizado correctamente";  
-    }catch (Exception $e) {
-        $status = "error";
-        $data = "Examen no actualizado"; 
-    }
-    
-    $response = array('status' => $status, 'data' => $data);
-    return (json_encode($response, JSON_UNESCAPED_UNICODE));    
+    //echo (json_encode($examen));    
+    $id_examen = $examen["id_examen"];   
+    $nombre = $examen["nombre"];    
+    $id_tema = $examen["id_tema"]; 
+    $examen_json = $examen["examen_json"]; 
+    $porcentaje_aprobar = $examen["porcentaje_aprobar"];   
+    $tiempo_minutos = $examen["tiempo_minutos"]; 
+    $descripcion = $examen["descripcion"]; 
+          
+    $sth = $this->db->prepare("UPDATE examen SET nombre='$nombre', id_tema=$id_tema, examen_json='$examen_json', porcentaje_aprobar=$porcentaje_aprobar, tiempo_minutos=$tiempo_minutos, descripcion=$descripcion WHERE id_examen=$id_examen");
+    $sth->execute();           
 });
 
 // Return estadisticas

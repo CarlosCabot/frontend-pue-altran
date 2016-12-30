@@ -1,5 +1,5 @@
 // Scriptt
-var rootURL = "src/public";
+var rootURL = "../src/public";
 var formContentExamenes;
 var examen;
 var idExamen;
