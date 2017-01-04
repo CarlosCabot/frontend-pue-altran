@@ -271,8 +271,7 @@ $app->post('/user/new', function (Request $request, Response $response) {
     $sth->execute();        
     $exists = $sth->fetchAll();    
     
-    if(!$exists){
-        
+    if(!$exists){        
         $sth = $this->db->prepare(" INSERT INTO usuario VALUES (NULL, '$nif','$nombre', '$apellido_1', '$apellido_2', '$fecha_nacimiento', '$login', '$password', false ) ");     
         try{
             $sth->execute(); 
@@ -281,27 +280,31 @@ $app->post('/user/new', function (Request $request, Response $response) {
         }catch (Exception $e) {
             $status = "error";    
             $data = "Usuario no creado. Error en la inserción";
-        }            
-        
-    }else{    
-        
+        }  
+    }else{  
         $status = "error";    
-        $data = "Usuario no creado.";
+        $data = "";
         $msn_nif = "";
-        $msn_login = "";
-        
+        $msn_login = "";        
         for($i=0; $i< count($exists); $i++){
             if( $nif == $exists[$i]["nif"] ){
-                $msn_nif = "El NIF introducido ya existe. ";
+                $msn_nif = "El NIF introducido ya existe.";
             }
             if( $login == $exists[$i]["login"] ){
-                $msn_login = "El CORREO ELECTRÓNICO introducido ya existe. ";
+                $msn_login = " El CORREO ELECTRÓNICO introducido ya existe.";
             }
-        }        
-       
+        } 
         $data  .= $msn_nif . $msn_login;
     }
+    $response = array('status' => $status, 'data' => $data);
+    return (json_encode($response, JSON_UNESCAPED_UNICODE)); 
+});
 
+
+$app->post('/user/login', function (Request $request, Response $response) {
+    //Getting parsed data from request 
+    $usuario = $request->getQueryParams();  
+    
     $response = array('status' => $status, 'data' => $data);
     return (json_encode($response, JSON_UNESCAPED_UNICODE)); 
 });
