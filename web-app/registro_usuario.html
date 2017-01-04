@@ -20,14 +20,13 @@
 
 <body ng-controller="formulario_registro">
 
-    <div class="container">
+    <div class="container" action="#" onsubmit="return crear_cuenta(this)">
 
         <form class="form-signin">
             <h2 class="form-signin-heading">Crear una cuenta</h2>
             
-            <div id="error_nif" class="error_registro" >
-                <i class="fa fa-ban" aria-hidden="true"></i>
-                <div class="mensaje_error"></div>
+            <div id="error_registro">
+                <i class="fa fa-ban" aria-hidden="true"></i><span id="mensaje_error"></span>
             </div>
 
             <label for="nombre" class="sr-only"></label>
@@ -50,8 +49,8 @@
                                 
             <label for="password" class="sr-only"></label>
             <input type="password" id="password" class="form-control" name="password" placeholder="Contraseña" ng-model="registro.password" minlength="4" maxlength="16" required>
-            
-            <button id="crear_cuenta" ng-disabled="registro.login=='' || registro.password==''" class="btn btn-lg btn-primary btn-block" ng-model="registro.button">Enviar datos</button>
+                        
+            <button type="submit" id="crear_cuenta" class="btn btn-lg btn-primary btn-block" ng-model="registro.button">Enviar datos</button>
             <a href="../index.html" class="btn btn-lg btn-primary btn-block" role="button">Volver</a>
         </form>        
     </div>
@@ -60,7 +59,7 @@
     <script src="../js/bootstrap.min.js"></script>
     
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-    <script src="../js/validar_registro.js"></script>
+    <script src="../js/registro_usuario.js"></script>
 
 </body>
 

@@ -258,22 +258,52 @@ $app->post('/user/new', function (Request $request, Response $response) {
     //Getting parsed data from request 
     $usuario = $request->getParsedBody();    
     
+    $nombre = $usuario["nombre"];
+    $apellido_1 = $usuario["apellido_1"];  
+    $apellido_2 = $usuario["apellido_2"];
+    $fecha_nacimiento = $usuario["fecha_nacimiento"];  
     $nif = $usuario["nif"];
     $login = $usuario["login"];  
+    $password = $usuario["password"];
     
-        if ($nif == '22222222C') {
-            $status = "error1";
-            $descripcion = "Este NIF ya está registrado";
-        } else if ($login == 'paco@gmail.com'){
-            $status = "error2";
-            $descripcion = "Este email ya está registrado";
-        } else {
+    // Check nif and login uniques
+    $sth = $this->db->prepare("SELECT * FROM usuario WHERE nif = '$nif' OR login = '$login'");
+    $sth->execute();        
+    $exists = $sth->fetchAll();    
+    
+    if(!$exists){
+        
+        $sth = $this->db->prepare(" INSERT INTO usuario VALUES (NULL, '$nif','$nombre', '$apellido_1', '$apellido_2', '$fecha_nacimiento', '$login', '$password', false ) ");     
+        try{
+            $sth->execute(); 
             $status = "success";
-            $descripcion = "¡Tu cuenta ha sido creada con éxito!";    
-        }
-    
-    $response = array('status' => $status, 'descripcion' => $descripcion);
-    return (json_encode($response, JSON_UNESCAPED_UNICODE));    
+            $data = "Usuario creado correctamente.";  
+        }catch (Exception $e) {
+            $status = "error";    
+            $data = "Usuario no creado. Error en la inserción";
+        }            
+        
+    }else{    
+        
+        $status = "error";    
+        $data = "Usuario no creado.";
+        $msn_nif = "";
+        $msn_login = "";
+        
+        for($i=0; $i< count($exists); $i++){
+            if( $nif == $exists[$i]["nif"] ){
+                $msn_nif = "El NIF introducido ya existe. ";
+            }
+            if( $login == $exists[$i]["login"] ){
+                $msn_login = "El CORREO ELECTRÓNICO introducido ya existe. ";
+            }
+        }        
+       
+        $data  .= $msn_nif . $msn_login;
+    }
+
+    $response = array('status' => $status, 'data' => $data);
+    return (json_encode($response, JSON_UNESCAPED_UNICODE)); 
 });
 
 // Example
