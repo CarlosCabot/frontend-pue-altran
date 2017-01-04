@@ -258,21 +258,19 @@ $app->post('/user/new', function (Request $request, Response $response) {
     //Getting parsed data from request 
     $usuario = $request->getParsedBody();    
     
-    $login = $usuario["login"];   
-    $password = $usuario["password"];    
+    $nif = $usuario["nif"];
+    $login = $usuario["login"];  
     
-    if($login == '' || $password == ''){
-        $status = "error";
-        $descripcion = "Ni el correo electrónico ni la contraseña pueden estar en blanco" ;
-    }else{
-        if ($login == 'paco@gmail.com') {
-            $status = "error";
-            $descripcion = "El email ya existe" ;
+        if ($nif == '22222222C') {
+            $status = "error1";
+            $descripcion = "Este NIF ya está registrado";
+        } else if ($login == 'paco@gmail.com'){
+            $status = "error2";
+            $descripcion = "Este email ya está registrado";
         } else {
             $status = "success";
-            $descripcion = "Usuario añadido correctamente"   ;    
-        }        
-    }
+            $descripcion = "¡Tu cuenta ha sido creada con éxito!";    
+        }
     
     $response = array('status' => $status, 'descripcion' => $descripcion);
     return (json_encode($response, JSON_UNESCAPED_UNICODE));    

@@ -1,53 +1,32 @@
-var app=angular.module("app", []);
+var app = angular.module("app", []);
+        app.controller("formulario_registro", function ($scope) {
+            $scope.registro = {
+                nif: '',
+                login: ''
+            }
+        });
 
-app.controller("FormApp",function($scope) {
-    
-    $scope.registro={
-        nombre:"",
-        apellido_1:"",
-        apellido_2:"",
-        fecha_nacimiento:"",
-        nif:"",
-        login:"",
-        passwd:""    
-    };
-    
-    $scope.validarNombre= function() {
-        
-    };
-    
-    $scope.validarApellido_1= function() {
-        
-    };
-    
-    $scope.validarApellido_2= function() {
-        
-    };
-    
-    $scope.validarFecha= function() {
-        
-    };
-    
-    $scope.validarNIF= function() {
-        
-    };
-    
-    $scope.validarEmail= function() {
-        
-    };
-    
-    $scope.validarPassword= function() {
-        
-    };
-    
-    $scope.validarFormulario= function() {
-        $scope.validarNombre();
-        $scope.validarApellido_1();
-        $scope.validarApellido_2();
-        $scope.validarFecha();
-        $scope.validarNIF();
-        $scope.validarEmail();
-        $scope.validarPassword();
-    };
-    
-});
+
+        $('#crear_cuenta').click(function () {
+            $.ajax({
+                url: 'http://localhost/frontend-pue-altran/src/public/index.php/user/new',
+                method: 'POST',
+                data: $("form").serialize(),
+                dataType: 'json',
+                success: function (result) {
+                    $('#mensaje_error1').text(result.descripcion);
+                    $('#mensaje_error2').text(result.descripcion);
+                    $('#mensaje_exito').text(result.descripcion);
+                    if (result.status == "success")
+                        $('#mensaje_exito');
+                    else
+                        if (result.status == "error1")
+                            $('#mensaje_error1');
+                        else if (result.status == "error2")
+                            $('#mensaje_error2');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(textStatus);
+                }
+            });
+        });
