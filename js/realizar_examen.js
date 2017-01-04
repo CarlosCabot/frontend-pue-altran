@@ -147,17 +147,18 @@ function showDescription(data) {
 	var startButton = '<button id="start" name="start">Empezar</button>';
 
 	var descriptionComplete = descriptionHTML + startButton;
-	$('body').html(descriptionComplete);
+	$('#container').html(descriptionComplete);
 	return;
 }
 
 function startTest() {
+    
 	var newTemplate = '<div id="question"></div><div id="options"></div>';
 	var nextBackButtons = '<br /><button id="back" name="back">Anterior</button>'
 						+ '<button id="next" name="next">Siguiente</button>';
 
-	$('body').html(newTemplate + nextBackButtons);
-	$('body').append('<em id="alerta"></em>');
+	$('#container').html(newTemplate + nextBackButtons);
+	$('#container').append('<em id="alerta"></em>');
 	$('#back').hide();
 
 	var startQuestionResource = "/examen/pregunta/1";
