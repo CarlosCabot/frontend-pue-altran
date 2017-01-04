@@ -9,17 +9,16 @@
     <meta name="author" content="">
     <link rel="icon" href="img/favicon.ico">
     <title>ExamCreator Homepage</title>
-
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
-    <link href="css/jumbotron.css" rel="stylesheet">
-    
+    <link href="css/jumbotron.css" rel="stylesheet">    
     <!-- Custom styles for this template -->
     <link href="css/carousel.css" rel="stylesheet">
+    <!-- Custom styles index -->
+    <link href="css/index.css" rel="stylesheet">
     <!-- FontAwesome -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">    
   </head>
 
   <body>
@@ -35,17 +34,22 @@
           </button>
           <a class="navbar-brand" href="#">ExamCreator</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
+        <div id="navbar" class="navbar-collapse collapse">   
+         
+          <form class="navbar-form navbar-right" action="#" onsubmit="login_usuario(); return false">             
             <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
+              <input type="text" placeholder="Email" class="form-control" name="login" required>
             </div>
             <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
+              <input type="password" placeholder="Password" class="form-control" name="password" required>
             </div>
             <button type="submit" class="btn btn-success">Iniciar sesión</button>
             <a href="web-app/registro_usuario.html" class="btn btn-success" role="button">Registrarse</a>
+            <div id="error_login">
+                <i class="fa fa-ban" aria-hidden="true"></i><span id="mensaje_error"></span>
+            </div>    
           </form>
+          
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
@@ -192,6 +196,7 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/vendor/holder.min.js"></script>
+    <script src="js/index.js"></script>
 
   </body>
 </html>

@@ -1,33 +1,19 @@
-var rootURL = '../src/public';
+var rootURL = 'src/public';
 
-var app = angular.module("app", []);
-
-app.controller("formulario_registro", function ($scope) {
-    $scope.registro = {
-        nombre: ''
-        , apellido_1: ''
-        , apellido_1: ''
-        , fecha_nacimiento: ''
-        , nif: ''
-        , login: ''
-        , password: ''
-    }
-});
-
-function crear_cuenta (){
-    $.ajax({
-        url: rootURL + '/user/new'
-        , method: 'POST'
+function login_usuario() {
+    return $.ajax({
+        url: rootURL + '/user/login'
+        , method: 'GET'
         , data: $("form").serialize()
         , dataType: 'json'
         , success: function (result) {
             if (result.status == "success") {
-                $('#error_registro').css("display", "none");
+                $('#error_login').css("display", "none");
                 window.location.replace("web-app/inicio.html");
             }
             else if (result.status == "error") {
                 $('#mensaje_error').text(result.data);
-                $('#error_registro').css("display", "inherit");
+                $('#error_login').css("display", "inherit");
             }
             else {
                 // Api error
@@ -39,3 +25,6 @@ function crear_cuenta (){
         }
     });
 };
+
+
+

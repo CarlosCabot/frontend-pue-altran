@@ -1,0 +1,26 @@
+/*@font-face {
+    font-family: Roboto-Black;
+    src: url(../fonts/Roboto/roboto-black.ttf);
+}
+
+body{
+    font-family: Roboto-Black;
+}*/
+
+#error_login {
+    width: width: 100%;;
+    background: #F6CECE;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #d9534f;
+    border-radius: 4px;
+    display:none;
+}
+
+.fa-ban {
+    color: #d9534f;
+    margin-right: 5px;
+}

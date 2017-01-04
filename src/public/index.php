@@ -301,12 +301,29 @@ $app->post('/user/new', function (Request $request, Response $response) {
 });
 
 
-$app->post('/user/login', function (Request $request, Response $response) {
+$app->get('/user/login', function (Request $request, Response $response) {
     //Getting parsed data from request 
     $usuario = $request->getQueryParams();  
+        
+    $login = $usuario["login"];
+    $password = $usuario["password"];
     
+    $sth = $this->db->prepare("SELECT * FROM usuario WHERE login = '$login' AND password = '$password'");
+    $sth->execute();        
+    $exists = $sth->fetch();   
+    
+    if($exists){
+        $status = "success";
+        $data = "¡Login correcto!";  
+        $_SESSION["logged"] = true;
+    }else{
+        $status = "error";
+        $data = "¡Login no válido!";  
+        $_SESSION["logged"] = false;
+    }
+         
     $response = array('status' => $status, 'data' => $data);
-    return (json_encode($response, JSON_UNESCAPED_UNICODE)); 
+    return (json_encode($response, JSON_UNESCAPED_UNICODE));     
 });
 
 // Example
