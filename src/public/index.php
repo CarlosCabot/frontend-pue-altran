@@ -300,7 +300,6 @@ $app->post('/user/new', function (Request $request, Response $response) {
     return (json_encode($response, JSON_UNESCAPED_UNICODE)); 
 });
 
-
 $app->get('/user/login', function (Request $request, Response $response) {
     //Getting parsed data from request 
     $usuario = $request->getQueryParams();  
@@ -325,6 +324,22 @@ $app->get('/user/login', function (Request $request, Response $response) {
     $response = array('status' => $status, 'data' => $data);
     return (json_encode($response, JSON_UNESCAPED_UNICODE));     
 });
+
+/*
+*   Estadísticas admin
+*/
+
+$app->get('/estadisticas/temas', function (Request $request, Response $response) {
+    
+    $temas = [];
+    $temas[0] = array( "tema" => "Programación", "nota_media" => 5.6 );
+    $temas[1] = array( "tema" => "Matematicas", "nota_media" => 4.3 );
+    $temas[2] = array( "tema" => "Historia", "nota_media" => 6.5 );
+    
+    return (json_encode($temas, JSON_UNESCAPED_UNICODE));  
+});
+
+
 
 // Example
 $app->get('/hello/{name}', function (Request $request, Response $response) {
