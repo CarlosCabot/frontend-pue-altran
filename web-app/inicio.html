@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../img/favicon.ico">
-    <title>Dashboard Template for Bootstrap</title>
+    <link rel="icon" href="../img/favicon/favicon.ico">
+    <title>ExamifyMe web-app</title>
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../css/dashboard.css" rel="stylesheet"> </head>
+    <link href="../css/dashboard.css" rel="stylesheet"> 
+    <link href="../css/web-app1.css" rel="stylesheet">
+</head>
 
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -29,10 +32,11 @@
             </div>
         </div>
     </nav>
+    
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
-                <div>
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
+               <div>
                     <img id="user_photo" src="../img/users/user-default.png" alt="Default user">
                 </div>
                 <ul class="nav nav-sidebar">
@@ -46,10 +50,25 @@
                     <li><a href="ver_examenes.html">Ver examenes (user)</a></li>
                 </ul>
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h1 class="page-header">CONTENT</h1> </div>
+            <!--/span-->
+            <div class="col-sm-9 col-md-10 main">
+                <!--toggle sidebar button-->
+                <p class="visible-xs">
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                </p>
+                <h1 class="page-header">CONTENT</h1>
+               
+            </div> 
         </div>
+            <!--/row-->
     </div>
+    
+    <!--/.container-->
+    <footer>
+        <p style="text-align:center">©2016 Javascript - PUE</p>
+    </footer>    
+    
+    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -58,6 +77,16 @@
         window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
     </script>
     <script src="../js/bootstrap.min.js"></script>
+    
+    <!-- JavaScript jQuery code from Bootply.com editor  -->
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $('[data-toggle=offcanvas]').click(function () {
+                $('.row-offcanvas').toggleClass('active');
+            });
+        });
+    </script>   
+    <link href="../css/web-app2.css" rel="stylesheet">
 </body>
 
 </html>
