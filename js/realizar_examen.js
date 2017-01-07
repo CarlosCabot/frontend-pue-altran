@@ -172,13 +172,13 @@ function showDescription(data) {
 
 	
 	var descriptionComplete = descriptionHTML;
-	$('body').html(descriptionComplete);
+	$('#container').html(descriptionComplete);
 }
 
 function startTest() {
 	var newTemplate = '<div id="detailContainer" class="col-sm-9"><div id="countdown"></div><div id="question"></div><div id="options"></div></div>';
 	
-	$('body').html(newTemplate);
+	$('#container').html(newTemplate);
 	$('#detailContainer').append('<em id="alerta"></em>');
 	$('#back').hide();
 
@@ -266,7 +266,7 @@ function sendAnswers(datosAnswers) {
 
 	$.ajax({
 		type: "POST",
-		url:  "src/public/examen/finalize",
+		url:  rootURL + "/examen/finalize",
 		contentType: 'application/json',
 		dataType: 'json',
 		data: JSON.stringify(datosAnswers),
