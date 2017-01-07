@@ -15,7 +15,10 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="../css/dashboard.css" rel="stylesheet"> 
+    <!-- This styles are for lateral menu visibility on small devices -->    
     <link href="../css/web-app1.css" rel="stylesheet">
+    <!-- Editar exam styles -->
+    <link href="../css/editar_examen.css" rel="stylesheet">
 </head>
 
 <body>
@@ -43,7 +46,7 @@
                     <li><a href="inicio.html">Inicio <span class="sr-only">(current)</span></a></li>
                     <li><a href="crear_examen.html">Crear examen (admin)</a></li>
                     <li class="active"><a href="editar_examen.html">Editar examen (admin)</a></li>
-                    <li><a href="estadisticas.html">Estadísticas (admin)</a></li>
+                    <li><a href="estadisticas">Estadísticas (admin)</a></li>
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li><a href="realizar_examen.html">Realizar examen (user)</a></li>
@@ -57,14 +60,13 @@
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
                 </p>
                 <h1 class="page-header">Editar examen</h1>
-                <div id="selector"> </div>
-                <div id="metaInfoExamen"> </div>
-                <div id="contenidoExamen"> </div>
+                <div id="selector" class="form-horizontal"> </div>
+                <div id="metaInfoExamen" class="form-horizontal"> </div>
+                <div id="contenidoExamen" class="form-horizontal">  </div>
                 <div id="botones">
-                    <button id="guardar_examen">Guardar cambios</button>
-                    <button id="descartar">Descartar cambios</button>
-                </div>
-                   
+                    <button id="guardar_examen" class="btn btn-primary">Guardar cambios</button>
+                    <button id="descartar" class="btn btn-danger">Descartar cambios</button>
+                </div>               
             </div> 
         </div>
             <!--/row-->
@@ -84,6 +86,7 @@
         window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
     </script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/edit_exam.js"></script>
     
     <!-- JavaScript jQuery code from Bootply.com editor  -->
     <script type='text/javascript'>
@@ -94,7 +97,5 @@
         });
     </script>   
     <link href="../css/web-app2.css" rel="stylesheet">
-    <script src="../js/edit_exam.js"></script>
 </body>
-
 </html>

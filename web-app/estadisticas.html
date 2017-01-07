@@ -14,9 +14,9 @@
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../css/dashboard.css" rel="stylesheet"> 
+    <link href="../css/dashboard.css" rel="stylesheet">
     <link href="../css/web-app1.css" rel="stylesheet">
-     
+
     <link rel="stylesheet" href="../css/estadisticas.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
 </head>
@@ -27,15 +27,15 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="inicio.html">ExamCreator</a> </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">                    
+                <ul class="nav navbar-nav navbar-right">
                     <li><a href="editar_perfil.html">Perfil</a></li>
                     <li><a href="#">Logout</a></li>
                 </ul>
-                
+
             </div>
         </div>
     </nav>
-    
+
     <div class="container-fluid">
         <div class="row row-offcanvas row-offcanvas-left">
             <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
@@ -60,33 +60,32 @@
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
                 </p>
                 <h1 class="page-header">Estadísticas</h1>
-                
+
                 <div class="row placeholders">
                     <div class="col-xs-6 col-sm-6 placeholder">
                       <h2>Media de notas por temas:</h2>
                         <div class="container-chart">
-                            <canvas id="myChart"></canvas>
-                        </div>  
+                            <canvas id="myChart"></canvas>                            
+                        </div>
                     </div>
                     <div class="col-xs-6 col-sm-6 placeholder">
-                      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                      <h4>Label</h4>
-                      <span class="text-muted">Something else</span>
-                    </div>                    
+                      <h2>Visión global de resultados:</h2>
+                        <div class="container-chart">                            
+                            <canvas id="myPie"></canvas>
+                        </div>
+                    </div>           
                 </div>
-                
-                
-            </div> 
+            </div>
         </div>
             <!--/row-->
     </div>
-    
+
     <!--/.container-->
     <footer>
         <p style="text-align:center">©2016 Javascript - PUE</p>
-    </footer>    
-    
-    
+    </footer>
+
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -96,7 +95,7 @@
         window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
     </script>
     <script src="../js/bootstrap.min.js"></script>
-    
+
     <!-- JavaScript jQuery code from Bootply.com editor  -->
     <script type='text/javascript'>
         $(document).ready(function () {
@@ -104,9 +103,9 @@
                 $('.row-offcanvas').toggleClass('active');
             });
         });
-    </script>   
+    </script>
     <link href="../css/web-app2.css" rel="stylesheet">
-    
+
 </body>
 
 </html>

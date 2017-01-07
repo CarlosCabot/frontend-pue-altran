@@ -15,7 +15,6 @@ $(function () {
         success: function (response) {
             var array_temas = response;
 			cargaTema(array_temas);
-			cargaExamenes(1);
         }, 
         error: function (jqXHR, textStatus, errorThrown) {
             alert(textStatus);
@@ -25,17 +24,21 @@ $(function () {
     // el usuario cambia el tema
     $('body').on('change', '#tema', function() {
         formContentExamenes = '';
-        $('#examen').remove();
+        $('#contentExamenes').remove();
+        $('#metaInfoExamen').empty();
+        $('#contenidoExamen').empty();
+        $('#botones').hide();
         var idTema = $(this).val();                
-        cargaExamenes(idTema);
+        if (idTema != 0) cargaExamenes(idTema);
     });
     // Manejador de eventos para mostrar el exámen cuando
     // el usuario ha seleccionado uno en concréto
     $('body').on('change', '#examen', function() {
         $('#metaInfoExamen').empty();
         $('#contenidoExamen').empty();
+        $('#botones').hide();
         idExamen = $(this).val();                
-        cargaFormulario(idExamen);
+        if (idExamen != 0) cargaFormulario(idExamen);
     });
     // Manejador de eventos para el botón "Guardar cambios"
     $('#guardar_examen').on('click', function() {
@@ -52,11 +55,15 @@ $(function () {
 // *** Funciones para seleccionar tema y examen ***
 // Carga el select #tema con los temas disponibles
 function cargaTema(array_temas) {	
-        var formContentTemas = '<select id="tema">';
+        var formContentTemas = '<div class="form-group">'
+                                    +'<label for="tema" class="col-md-3 control-label">Seleccionar tema:</label>'
+                                    + '<div class="col-md-9">'
+                                        +'<select id="tema" class="form-control">' 
+                                            +'<option value="0">Selecciona tema</option>';
         $.each(array_temas, function (index, value) {
             formContentTemas += '<option value="' + value.id_tema + '">' + value.nombre + '</option>';
         });
-        formContentTemas += '</select>';
+        formContentTemas += '</select></div></div>';
 		$('#selector').append(formContentTemas);
 }
 // Carga el select #examen con los examenes del tema elegido
@@ -67,11 +74,17 @@ function cargaExamenes(idT){
         dataType: "json", 
         success: function (response) {
             var array_examenes = response;
-            formContentExamenes = '<select id="examen"><option value="0">Selecciona...</option>';
+            formContentExamenes = '<div id="contentExamenes" class="form-group">'
+                                        +'<label for="examen" class="col-md-3 control-label">Seleccionar examen:</label>'
+                                        + '<div class="col-md-9">'
+                                            +'<select id="examen" class="form-control">'
+                                                +'<option value="0">Selecciona exámen</option>';
 			$.each(array_examenes, function (index, value) {
-                formContentExamenes += '<option id="' + value.id_examen + '"' + ' value="' + value.id_examen + '">' + value.nombre + '</option>';
+                formContentExamenes += '<option id="' + value.id_examen + '"' 
+                                    + ' value="' + value.id_examen + '">' 
+                                    + value.nombre + '</option>';
             });
-            formContentExamenes += '</select>'
+            formContentExamenes += '</select></div></div>'
             $('#selector').append(formContentExamenes);
         }, 
         error: function (jqXHR, textStatus, errorThrown) {
@@ -99,7 +112,31 @@ function cargaFormulario(idE){
 //  Rellena el formulario con los datos del examen para poder
 //  editar el nombre, porcentaje de aprobado, tiempo y descripción
 function metaInfoExamen(examen) {
-    var metaInfoHTML = 'nombreExamen <input type="text" id="nombreExamen" name="nombreExamen" value=""/>porcentaje <input type="number" id="porcentaje" name="porcentaje" value=""/>tiempo <input type="number" id="tiempo" name="tiempo" value=""/>descripcion <textarea id="descripcion" rows="4" cols="50"> </textarea>';
+    var metaInfoHTML = '<h4 class="bg-info">Datos del examen "' + examen.nombre + '"</h4>'
+                        +'<div class="form-group">'
+                            +'<label for="nombreExamen" class="col-md-3 control-label">Nombre examen:</label>'
+                            +'<div class="col-md-9">'
+                                +'<input type="text" id="nombreExamen" name="nombreExamen" value="" class="form-control"/>'
+                            +'</div>'
+                        +'</div>'
+                        +'<div class="form-group">'
+                            +'<label for="porcentaje" class="col-md-3 control-label">Porcentaje aprobado:</label>'
+                            +'<div class="col-md-9">'
+                                +'<input type="number" id="porcentaje" name="porcentaje" value="" class="form-control"/>'
+                            +'</div>'
+                        +'</div>'
+                        +'<div class="form-group">'
+                            +'<label for="tiempo" class="col-md-3 control-label">Duración examen:</label>'
+                            +'<div class="col-md-9">'
+                                +'<input type="number" id="tiempo" name="tiempo" value="" class="form-control"/>'
+                            +'</div>'
+                        +'</div>'
+                        +'<div class="form-group">'
+                            +'<label for="descripcion" class="col-md-3 control-label">Descripción:</label>'
+                            +'<div class="col-md-9">'
+                                +'<textarea id="descripcion" rows="4" cols="50" class="form-control"> </textarea>'
+                            +'</div>'
+                        +'</div>';
     $('#metaInfoExamen').append(metaInfoHTML);
     $('#nombreExamen').val(examen.nombre);
     $('#porcentaje').val(examen.porcentaje_aprobar);
@@ -111,30 +148,69 @@ function metaInfoExamen(examen) {
 //  editar los enunciados, las respuestas y soluciones
 function contenidoExamen(preguntas) {
     preguntas = JSON.parse(preguntas);
-    var contenidoExamen ='<p>Exámen</p>';
+    var contenidoExamen ='<h4 class="bg-info">Contenido del examen "' + examen.nombre + '"</h4>';
     $.each(preguntas, function(key, value){
-        contenidoExamen += 'Enunciado<br> <input type="text" id="enunciado'+value.id_pregunta+'" name="enunciado" value="' + value.enunciado + '"><br><input type="text" id="respuesta_A'+value.id_pregunta+'" name="respuesta_A" value="' + value.respuestas.A +'"><br><input type="text" id="respuesta_B'+value.id_pregunta+'" name="respuesta_B" value="' + value.respuestas.B +'"><br><input type="text" id="respuesta_C'+value.id_pregunta+'" name="respuesta_C" value="' + value.respuestas.C +'"><br><input type="text" id="respuesta_D'+value.id_pregunta+'" name="respuesta_D" value="' + value.respuestas.D +'"><br>';
+        contenidoExamen += '<div class="row"><h4 class="col-md-3">Pregunta '+ value.id_pregunta +'</h4></div>'
+                            +'<div class="form-group">'
+                                +'<label for="enunciado'+value.id_pregunta+'" class="col-md-3 control-label">Enunciado:</label>'
+                                +'<div class="col-md-9">'
+                                    +'<input type="text" id="enunciado'+value.id_pregunta+'" name="enunciado" class="form-control" value="' + value.enunciado + '">'
+                                +'</div>'
+                            +'</div>'
+                            +'<div class="form-group">'
+                                +'<label for="respuesta_A'+value.id_pregunta+'" class="col-md-3 control-label">Respuesta A:</label>'
+                                +'<div class="col-md-9">'
+                                    + '<input type="text" id="respuesta_A'+value.id_pregunta+'" name="respuesta_A" class="form-control" value="' + value.respuestas.A +'">'
+                                +'</div>'
+                            +'</div>'
+                            +'<div class="form-group">'
+                                +'<label for="respuesta_B'+value.id_pregunta+'" class="col-md-3 control-label">Respuesta B:</label>'
+                                +'<div class="col-md-9">'
+                                    + '<input type="text" id="respuesta_B'+value.id_pregunta+'" name="respuesta_B" class="form-control" value="' + value.respuestas.B +'">'
+                                +'</div>'
+                            +'</div>'
+                            +'<div class="form-group">'
+                                +'<label for="respuesta_C'+value.id_pregunta+'" class="col-md-3 control-label">Respuesta C:</label>'
+                                +'<div class="col-md-9">'
+                                    + '<input type="text" id="respuesta_C'+value.id_pregunta+'" name="respuesta_C" class="form-control" value="' + value.respuestas.C +'">'
+                                +'</div>'
+                            +'</div>'
+                            +'<div class="form-group">'
+                                +'<label for="respuesta_D'+value.id_pregunta+'" class="col-md-3 control-label">Respuesta D:</label>'
+                                +'<div class="col-md-9">'
+                                    + '<input type="text" id="respuesta_D'+value.id_pregunta+'" name="respuesta_D" class="form-control" value="' + value.respuestas.D +'">'
+                                +'</div>'
+                            +'</div>';
+                    
+        contenidoExamen +='<div class="form-group last-group">'
+                                + '<label class="col-md-3 control-label">Solución: </label>' 
+                                + '<div class="col-md-9">';
         
-        // console.log("key" + key + "value" + value);
-        // console.log("ID PREGUNTA: "+value.id_pregunta);
-        // console.log("SOLUCION: "+value.respuestas.solucion);
         var respuesta = "A";
         if (value.respuestas.solucion == respuesta){ var solucion = " checked='checked'";} else {var solucion =""};
-        contenidoExamen += '<input class="solucion" type="radio" name="solucion'+value.id_pregunta+'" value="'+respuesta+'"'+solucion+'> '+respuesta+' ';
+        contenidoExamen += '<label class="checkbox-inline">'
+                                +'<input type="radio" name="solucion'+value.id_pregunta+'" value="'+respuesta+'"'+solucion+'> '
+                                +respuesta+'</label>';
         
         var respuesta = "B";
         if (value.respuestas.solucion == respuesta){ var solucion = " checked='checked'";} else {var solucion =""};
-        contenidoExamen += '<input class="solucion" type="radio" name="solucion'+value.id_pregunta+'" value="'+respuesta+'"'+solucion+'> '+respuesta+' ';
-        
+        contenidoExamen += '<label class="checkbox-inline">'
+                                +'<input type="radio" name="solucion'+value.id_pregunta+'" value="'+respuesta+'"'+solucion+'> '
+                                +respuesta+'</label>';
+
         var respuesta = "C";
         if (value.respuestas.solucion == respuesta){ var solucion = " checked='checked'";} else {var solucion =""};
-        contenidoExamen += '<input class="solucion" type="radio" name="solucion'+value.id_pregunta+'" value="'+respuesta+'"'+solucion+'> '+respuesta+' ';
+        contenidoExamen += '<label class="checkbox-inline">'
+                                +'<input type="radio" name="solucion'+value.id_pregunta+'" value="'+respuesta+'"'+solucion+'> '
+                                +respuesta+'</label>';
         
         var respuesta = "D";
         if (value.respuestas.solucion == respuesta){ var solucion = " checked='checked'";} else {var solucion =""};
-        contenidoExamen += '<input class="solucion" type="radio" name="solucion'+value.id_pregunta+'" value="'+respuesta+'"'+solucion+'> '+respuesta+' ';
+        contenidoExamen += '<label class="checkbox-inline">'
+                                +'<input type="radio" name="solucion'+value.id_pregunta+'" value="'+respuesta+'"'+solucion+'> '
+                                +respuesta+'</label>';
         
-        contenidoExamen += '<br><br>';
+        contenidoExamen += '</div></div>';
     });
     $('#contenidoExamen').append(contenidoExamen);
     $('#botones').show();
