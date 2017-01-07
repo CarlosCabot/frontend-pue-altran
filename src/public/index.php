@@ -344,14 +344,12 @@ $app->get('/historial/examenes/{idU}', function ($request, $response, $args) {
 *   Estadísticas admin
 */
 
-$app->get('/estadisticas/temas', function (Request $request, Response $response) {
+$app->get('/estadisticas/temas', function (Request $request, Response $response) {    
+    $sth = $this->db->prepare("SELECT tema.id_tema, tema.nombre,(SELECT CAST((SUM(evaluacion_detalle.nota)) AS DECIMAL) FROM evaluacion JOIN examen ON evaluacion.id_examen = examen.id_examen, evaluacion_detalle WHERE evaluacion.id_evaluacion=evaluacion_detalle.id_evaluacion AND examen.id_tema = tema.id_tema group by tema.id_tema)/(SELECT CAST(count(evaluacion.id_evaluacion) AS DECIMAL) FROM evaluacion JOIN examen ON evaluacion.id_examen = examen.id_examen WHERE examen.id_tema = tema.id_tema group by tema.id_tema) AS nota_media FROM tema, examen, evaluacion JOIN evaluacion_detalle ON evaluacion.id_evaluacion=evaluacion_detalle.id_evaluacion WHERE evaluacion.id_examen = examen.id_examen GROUP BY tema.id_tema");
+    $sth->execute();        
+    $temas = $sth->fetchAll();     
     
-    $temas = [];
-    $temas[0] = array( "tema" => "Programación", "nota_media" => 5.6 );
-    $temas[1] = array( "tema" => "Matematicas", "nota_media" => 4.3 );
-    $temas[2] = array( "tema" => "Historia", "nota_media" => 6.5 );
-    
-    return (json_encode($temas, JSON_UNESCAPED_UNICODE));  
+    return (json_encode($temas, JSON_UNESCAPED_UNICODE));
 });
 
 
