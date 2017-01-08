@@ -14,8 +14,9 @@
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../css/dashboard.css" rel="stylesheet">
-    <link href="../css/web-app1.css" rel="stylesheet"> </head>
+    <link href="../css/dashboard.css" rel="stylesheet"> 
+    <link href="../css/web-app1.css" rel="stylesheet">
+</head>
 
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -23,26 +24,29 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="inicio.html">ExamCreator</a> </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right">                    
                     <li><a href="editar_perfil.html">Perfil</a></li>
                     <li><a href="#">Logout</a></li>
-                </ul>
+                </ul>                
             </div>
         </div>
     </nav>
+    
     <div class="container-fluid">
         <div class="row row-offcanvas row-offcanvas-left">
             <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
-                <div> <img id="user_photo" src="../img/users/user-default.png" alt="Default user"> </div>
+               <div>
+                    <img id="user_photo" src="../img/users/user-default.png" alt="Default user">
+                </div>
                 <ul class="nav nav-sidebar">
                     <li><a href="inicio.html">Inicio <span class="sr-only">(current)</span></a></li>
                     <li><a href="crear_examen.html">Crear examen (admin)</a></li>
                     <li><a href="editar_examen.html">Editar examen (admin)</a></li>
-                    <li><a href="estadisticas.html">Estadísticas (admin)</a></li>
+                    <li><a href="estadisticas">Estadísticas (admin)</a></li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li><a href="realizar_examen.html">Realizar examen (user)</a></li>
-                    <li class="active"><a href="ver_examenes.html">Ver examenes (user)</a></li>
+                    <li  class="active"><a href="realizar_examen.html">Realizar examen (user)</a></li>
+                    <li><a href="ver_examenes.html">Ver examenes (user)</a></li>
                 </ul>
             </div>
             <!--/span-->
@@ -51,26 +55,31 @@
                 <p class="visible-xs">
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
                 </p>
-                <h1 class="page-header">Ver examenes</h1>
+                <h1 class="page-header">Realizar examen</h1>
                 <div id="container">
-                    <button id="myExamenes">Ver mis exámenes</button>
-                </div>
-            </div>
+                    <button id="mainStart" class="btn btn-primary">Quiero examinarme</button>
+                </div>               
+            </div> 
         </div>
-        <!--/row-->
+            <!--/row-->
     </div>
+    
     <!--/.container-->
     <footer>
         <p style="text-align:center">©2016 Javascript - PUE</p>
-    </footer>
+    </footer>    
+    
+    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/realizar_examen.js"></script>
     <script>
         window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
     </script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>    
+    
     <!-- JavaScript jQuery code from Bootply.com editor  -->
     <script type='text/javascript'>
         $(document).ready(function () {
@@ -78,9 +87,8 @@
                 $('.row-offcanvas').toggleClass('active');
             });
         });
-    </script>
+    </script>   
     <link href="../css/web-app2.css" rel="stylesheet">
-    <script type="text/javascript" src="../js/ver_examenes.js"></script>
 </body>
 
 </html>

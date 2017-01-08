@@ -1,10 +1,12 @@
 var idUsuario = 1;
-var url = '../src/public/historial/examenes/1';
+var url = '../src/public/historial/examenes/7';
 var idDetalleExamen;
 
 $(function() {
-    
-    getData(url, showTableExamenes);
+
+	$('body').on("click", "#myExamenes", function() {
+		getData(url, showTableExamenes);
+	})
 
 	$('body').on("click", ".verDetalle", function() {
 		idDetalleExamen = $(this).attr('id');
@@ -15,6 +17,11 @@ $(function() {
 		$('#back').remove();
 		getData(url, showTableExamenes);
 	})
+
+	$('body').on("click", "#backInicio", function() {
+		$('#container').html('<button id="myExamenes" class="btn btn-primary">Ver mis exámenes</button>');
+	})
+
 })
 
 function getData(url, callback) {
@@ -55,7 +62,7 @@ function parseData(data) {
 function showTableExamenes(data) {
 	var tableCampos = ["Fecha", "Nombre", "Descripción", "Apto", "Nota", "Detalle"];
 	
-	var tableHead = '<thead><tr>'
+	var tableHead = '<div class="table-responsive"><table class="table table-hover"><thead><tr>'
 	$.each(tableCampos, function(index, value){
 		tableHead += '<th>' + value + '</th>'; 
 	})
@@ -80,10 +87,13 @@ function showTableExamenes(data) {
 				+ '<td>' + '<a href="' + '#' +  '" id="' + value.id_examen  
 				+ '" class="verDetalle">Ver</a>' + '</td>';
 	})
-	tableBody += '</tbody>';
+	tableBody += '</tbody></table></div>';
 
 	var examenesTable = tableHead + tableBody;
-	$('table').html(examenesTable);
+	$('#container').html(examenesTable);
+
+	var backInicioButton = '<button id="backInicio" class="btn btn-default" value="backInicio">Volver al inicio</button>';
+	$('#container').append(backInicioButton);
 }
 
 // Para ver el detalle del examen, hay que procesar antes el JSON
@@ -139,4 +149,9 @@ function showDetalle(objeto) {
 
 	var backButton = '<button id="back" value="back" class="btn btn-default">Volver a mis exámenes</button>';
 	$('#container').append(backButton);
+
+	var backInicioButton = '<button id="backInicio" class="btn btn-default" value="backInicio">Volver al inicio</button>';
+	$('#container').append(backInicioButton);
 }
+
+
