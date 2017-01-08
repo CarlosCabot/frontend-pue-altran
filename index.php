@@ -22,6 +22,8 @@
   </head>
 
   <body>
+    <!--database connection-->
+    <?php include("web-app/php/conexion.php") ?>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">

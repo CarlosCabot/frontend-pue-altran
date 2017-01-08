@@ -8,7 +8,8 @@ body{
 }*/
 
 #error_login {
-    width: width: 100%;;
+    width: width: 100%;
+    ;
     background: #F6CECE;
     padding-left: 12px;
     padding-right: 12px;
@@ -17,10 +18,19 @@ body{
     margin-bottom: 16px;
     border: 1px solid #d9534f;
     border-radius: 4px;
-    display:none;
+    display: none;
 }
 
 .fa-ban {
     color: #d9534f;
     margin-right: 5px;
+}
+
+.carousel-caption {
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0.27);
+}
+
+.carousel-caption>h1 {
+    font-size: 70px;
 }
