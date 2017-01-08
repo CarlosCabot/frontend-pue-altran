@@ -22,15 +22,23 @@ $(function () {
         , url: rootURL + '/temas'
         , dataType: "json"
         , success: function (response) {
+            
             array_temas = response;
+            var formContentTemas = "";    
+            $.each(array_temas, function (index, value) {
+                    formContentTemas += '<option id="' + value.id_tema + '"' + 'value="' + value.id_tema + '">' + value.nombre + '</option>';
+            });    
+            $('#temaSelection').append(formContentTemas);
+            
         }
         , error: function (jqXHR, textStatus, errorThrown) {
             alert(textStatus);
         }
-    });
+    });   
+   
     
     // Funcion al evento click del boton crear_examen
-    $('body').on('click', '#crear_examen', function () {      
+    /*$('body').on('click', '#crear_examen', function () {      
         // Eliminar el boton crear examen
         $('#crear_examen').remove();        
         
@@ -80,7 +88,7 @@ $(function () {
                 + '</div>'
             + '</div>' 
         + '</form>');
-    });
+    });*/
     
     // Funcionalidad del boton Guardar examen
     $('body').on('click', '#guardar_examen', function () {

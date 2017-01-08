@@ -36,13 +36,13 @@
                 <div> <img id="user_photo" src="../img/users/user-default.png" alt="Default user"> </div>
                 <ul class="nav nav-sidebar">
                     <li><a href="inicio.html">Inicio <span class="sr-only">(current)</span></a></li>
-                    <li class="active"><a href="crear_examen.html">Crear examen (admin)</a></li>
+                    <li><a href="crear_examen.html">Crear examen (admin)</a></li>
                     <li><a href="editar_examen.html">Editar examen (admin)</a></li>
                     <li><a href="estadisticas.html">Estadísticas (admin)</a></li>
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li><a href="realizar_examen.html">Realizar examen (user)</a></li>
-                    <li><a href="ver_examenes.html">Ver examenes (user)</a></li>
+                    <li class="active"><a href="ver_examenes.html">Ver examenes (user)</a></li>
                 </ul>
             </div>
             <!--/span-->
@@ -51,48 +51,9 @@
                 <p class="visible-xs">
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
                 </p>
-                <h1 class="page-header">Crear examen</h1>
-                <div id="contenedor">
-                    <form action="javascript:void(0);" class="form-horizontal" onsubmit="crear_examen(); return false;">
-                        <div class="form-group">
-                            <label for="temaSelection" class="col-sm-3 control-label">Seleccionar Tema:</label>
-                            <div class="col-sm-9">
-                                <select id="temaSelection" name="temaSelection" class="form-control" required>
-                                    <option value="">Seleccionar Tema</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="temaSelection" class="col-sm-3 control-label">Nombre examen: </label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nombre_exam" name="nombre_exam" placeholder="Nombre del examen" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="temaSelection" class="col-sm-3 control-label">Porcentaje de aciertos: </label>
-                            <div class="col-sm-9">
-                                <input type="number" id="porcentaje" name="porcentaje" class="form-control" placeholder="Porcentaje de aciertos" required> 
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="temaSelection" class="col-sm-3 control-label">Duración examen: </label>
-                            <div class="col-sm-9">
-                                <input type="number" id="tiempo_minutos" name="tiempo_minutos" class="form-control" placeholder="Duración examen" required> 
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="temaSelection" class="col-sm-3 control-label">Descripción del examen: </label>
-                            <div class="col-sm-9">
-                                <textarea id="descipcion" rows="4" cols="50" placeholder="Descripción del examen" class="form-control" required></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="temaSelection" class="col-sm-3 control-label"></label>
-                            <div class="col-sm-9">
-                                <input class="btn btn-primary" type="submit" value="Crear preguntas"> 
-                            </div>
-                        </div>
-                    </form>
+                <h1 class="page-header">Ver examenes</h1>
+                <div id="container">
+                    <button id="myExamenes">Ver mis exámenes</button>
                 </div>
             </div>
         </div>
@@ -119,7 +80,7 @@
         });
     </script>
     <link href="../css/web-app2.css" rel="stylesheet">
-    <script type="text/javascript" src="../js/crear_examen.js"></script>
+    <script type="text/javascript" src="../js/ver_examenes.js"></script>
 </body>
 
 </html>
