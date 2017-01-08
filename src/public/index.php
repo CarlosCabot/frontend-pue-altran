@@ -271,7 +271,7 @@ $app->post('/user/new', function (Request $request, Response $response) {
     $exists = $sth->fetchAll();    
     
     if(!$exists){        
-        $sth = $this->db->prepare(" INSERT INTO usuario VALUES (NULL, '$nif','$nombre', '$apellido_1', '$apellido_2', '$fecha_nacimiento', '$login', '$password', false ) ");     
+        $sth = $this->db->prepare(" INSERT INTO usuario VALUES (NULL, '$nif','$nombre', '$apellido_1', '$apellido_2', '$fecha_nacimiento', 'user-default.png', '$login', '$password', false ) ");     
         try{
             $sth->execute(); 
             $status = "success";

@@ -23,7 +23,7 @@ function crear_cuenta (){
         , success: function (result) {
             if (result.status == "success") {
                 $('#error_registro').css("display", "none");
-                window.location.replace("web-app/inicio.html");
+                window.location.replace("web-app/inicio.php");
             }
             else if (result.status == "error") {
                 $('#mensaje_error').text(result.data);

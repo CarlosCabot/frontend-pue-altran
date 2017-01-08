@@ -17,6 +17,7 @@
                     <input type="file" class="form-control">
                 </div>
             </div>
+            <br />
 
             <!-- edit form column -->
             <div class="col-md-9 personal-info">
@@ -90,3 +91,4 @@
         <script type="text/javascript" src="../js/editar_perfil.js"></script>
     </body>
 </html>
+
