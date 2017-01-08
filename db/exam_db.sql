@@ -81,11 +81,11 @@ INSERT INTO examen VALUES (NULL, "Aritmética para niños",  4, '[{"id_pregunta"
 
 INSERT INTO usuario VALUES (NULL, "11223344A","Carlos", "Cabot", NULL, "1988-07-28", "rickroll.jpg", "carloscabotdp@gmail.com", "12345", false );
 INSERT INTO usuario VALUES (NULL, "11223344B", "Irene", "Giró", NULL, "1991-05-12", "wonder.png", "irene.giroparadell@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344C","Antony", "Medina", NULL, "1991-05-12", "user-default.png","iantony.01.1991@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344C","Antony", "Medina", NULL, "1991-05-12", "gates.jpg","iantony.01.1991@gmail.com", "12345", false );
 INSERT INTO usuario VALUES (NULL, "11223344D", "Stanka", "Asenova", NULL, "1991-05-12", "wonder.png", "ctahka@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344E", "Daniel", "Colomer", NULL, "1991-05-12", "user-default.png", "colomertrave@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344F", "Daniel", "Sanchez", NULL, "1991-05-12", "user-default.png", "dsbdn21@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344G", "Samuel", "Allasia", NULL, "1991-05-12", "user-default.png", "samuelallasia@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344E", "Daniel", "Colomer", NULL, "1991-05-12", "gates.jpg", "colomertrave@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344F", "Daniel", "Sanchez", NULL, "1991-05-12", "gates.jpg", "dsbdn21@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344G", "Samuel", "Allasia", NULL, "1991-05-12", "gates.jpg", "samuelallasia@gmail.com", "12345", false );
 INSERT INTO usuario VALUES (NULL, "11223344X","Super", "Admin", NULL, "1988-07-28", "nemo.png", "admin@gmail.com", "12345", true );
 
 INSERT INTO evaluacion VALUES (NULL, 1, "2016-12-19 23:59:59", 1);
