@@ -35,66 +35,13 @@ $(function () {
             alert(textStatus);
         }
     });   
-   
-    
-    // Funcion al evento click del boton crear_examen
-    /*$('body').on('click', '#crear_examen', function () {      
-        // Eliminar el boton crear examen
-        $('#crear_examen').remove();        
-        
-        // Creación de un select con los temas disponibles de la api y el resto de inputs excepto el campo examen_json
-        var formContentTemas = 
-        '<form action="javascript:void(0);" class="form-horizontal" onsubmit="crear_examen(); return false;">'
-        + '<div class="form-group">'
-            + '<label for="temaSelection" class="col-sm-3 control-label">Seleccionar Tema:</label>'
-            + '<div class="col-sm-9">'
-                + '<select id="temaSelection" name="temaSelection" class="form-control" required>'
-                    + '<option value="">Seleccionar Tema</option>';
-        
-        $.each(array_temas, function (index, value) {
-            formContentTemas += '<option id="' + value.id_tema + '"' + 'value="' + value.id_tema + '">' + value.nombre + '</option>';
-        });
-        
-        formContentTemas += '</select></div></div>';        
-        $('#contenedor').append(formContentTemas 
-            + '<div class="form-group">'
-                + '<label for="temaSelection" class="col-sm-3 control-label">Nombre examen: </label>' 
-                + '<div class="col-sm-9">' 
-                    + '<input type="text" class="form-control" id="nombre_exam" name="nombre_exam" placeholder="Nombre del examen" required>' 
-                + '</div>' 
-            + '</div>'
-            + '<div class="form-group">' 
-                + '<label for="temaSelection" class="col-sm-3 control-label">Porcentaje de aciertos: </label>' 
-                + '<div class="col-sm-9">'
-                    + '<input type="number" id="porcentaje" name="porcentaje" class="form-control" placeholder="Porcentaje de aciertos" required>' 
-                + '</div>' 
-            + '</div>' 
-            + '<div class="form-group">' 
-                + '<label for="temaSelection" class="col-sm-3 control-label">Duración examen: </label>'
-                + '<div class="col-sm-9">' 
-                    + '<input type="number" id="tiempo_minutos" name="tiempo_minutos" class="form-control" placeholder="Duración examen" required>' 
-                + '</div>' 
-            + '</div>'
-            + '<div class="form-group">'
-                + '<label for="temaSelection" class="col-sm-3 control-label">Descripción del examen: </label>'
-                + '<div class="col-sm-9">'
-                    + '<textarea id="descipcion" rows="4" cols="50" placeholder="Descripción del examen" class="form-control" required></textarea>' 
-                + '</div>'
-            + '</div>'
-            + '<div class="form-group">'
-                + '<label for="temaSelection" class="col-sm-3 control-label"></label>' 
-                + '<div class="col-sm-9">'                     
-                    + '<input class="btn btn-primary" type="submit" value="Crear preguntas">'
-                + '</div>'
-            + '</div>' 
-        + '</form>');
-    });*/
     
     // Funcionalidad del boton Guardar examen
     $('body').on('click', '#guardar_examen', function () {
         
         if(array_preguntas.length<1){
-            alert("No has añadido ninguna pregunta al examen.");
+            $("#error_crear").css("display","inherit");
+            //alert("No has añadido ninguna pregunta al examen.");
         }else{
             examen.examen_json += '[';
             for(var i=0; i < array_preguntas.length; i++){
@@ -138,8 +85,8 @@ function crear_examen (){
     // Añadir los inputs para nueva pregunta
     $('#contenedor').append(
             '<form action="javascript:void(0);" class="form-horizontal" onsubmit="add_pregunta(); return false">'
-                + '<label class="col-sm-3"></label>'
-                + '<h2 id="titulo_pregunta" class="col-sm-9">Pregunta nº1</h2>'
+                + '<h3 id="titulo_pregunta">Pregunta 1</h3>'
+                + '<div id="error_crear"><span><i class="fa fa-ban" aria-hidden="true" style="color: red;"></i> Error: No has añadido ninguna pregunta al examen.</span></div>'        
                 + '<div class="form-group">'
                     + '<label for="temaSelection" class="col-sm-3 control-label">Enunciado: </label>' 
                     + '<div class="col-sm-9">' 
@@ -186,7 +133,7 @@ function crear_examen (){
                 + '<div class="form-group">'
                     + '<label for="temaSelection" class="col-sm-3 control-label"></label>' 
                     + '<div class="col-sm-9">' 
-                        + '<button id="nueva_pregunta" class="btn btn-default" style="margin-right:5px;" type="submit">Añadir la Pregunta</button>'
+                        + '<button id="nueva_pregunta" class="btn btn-success" style="margin-right:5px;" type="submit">Añadir la Pregunta</button>'
                         
                     + '</div>'
                 + '</div>'
@@ -194,7 +141,9 @@ function crear_examen (){
             + '<button id="guardar_examen" class="btn btn-primary" style="float:right">Guardar examen</button>' );      
 };
 
-function add_pregunta(){    
+function add_pregunta(){  
+    $("#error_crear").css("display","none");
+    
     var pregunta = '{"id_pregunta":'+ array_preguntas.length+1 +',"enunciado":"'+ $('#enunciado').val() +'","respuestas":{"A":"'+ $('#respuesta_A').val() +'","B":"'+ $('#respuesta_B').val() +'","C":"'+ $('#respuesta_C').val() +'","D":"'+ $('#respuesta_D').val() +'","solucion":"'+ $('input[name=solucion]:checked').val() +'"}}';    
          
     //Añadir la pregunta al array
@@ -202,7 +151,7 @@ function add_pregunta(){
     
     var num_preg = +array_preguntas.length+1;
         
-    $('#titulo_pregunta').text('Pregunta nº' + num_preg);
+    $('#titulo_pregunta').text('Pregunta ' + num_preg);
     //Limpiar los campos input
     $('#enunciado').val('');
     $('#respuesta_A').val('');

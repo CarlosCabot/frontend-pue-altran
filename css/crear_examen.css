@@ -1,0 +1,15 @@
+#error_crear {
+    background: #F6CECE;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    display: none;
+}
+
+i {
+    color:red;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
