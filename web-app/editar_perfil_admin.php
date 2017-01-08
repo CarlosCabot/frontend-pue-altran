@@ -87,7 +87,7 @@
             </div>
         </div>         
     
-    <?php include("cierre.php") ?>
+<?php include("cierre.php") ?>
         <script type="text/javascript" src="../js/editar_perfil.js"></script>
     </body>
 </html>
