@@ -11,13 +11,17 @@
     <meta name="author" content="">
     <link rel="icon" href="../img/favicon/favicon.ico">
     <title>ExamifyMe inicio</title>
+    <!-- Reset css -->
+    <link href="../css/reset.css" rel="stylesheet"> 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- Custom styles for this template -->
     <link href="../css/dashboard.css" rel="stylesheet">
-    <link href="../css/web-app1.css" rel="stylesheet"> </head>
+    <link href="../css/web-app1.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="../css/inicio_adm.css">
+</head>
 
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -51,24 +55,27 @@
                 <p class="visible-xs">
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
                 </p>
-                <h1 class="page-header">CONTENT</h1>
+                <h1 class="page-header">Inicio</h1>
                 <div class="container marketing" style="text-align:center;margin-top:50px;">
                     <!-- Three columns of text below the carousel -->
                     <div class="row">
-                        <div class="col-lg-4"><i class="fa fa-file-text" aria-hidden="true"></i> <img class="img-circle" src="../img/thumbs.png" alt="Imagen de un lapiz" title="Lapiz" width="140" height="140">
+                        <a href="crear_examen.html"><div class="col-lg-4">
+                            <div class="grey-circle"><i class="fa fa-file-text fa-5x" aria-hidden="true" style="margin-left: 5px;"></i></div>
                             <h2>Crear examen </h2>
-                            <p> Tanto si quieres repasar como aumentar tus conocimientos.</p>
-                        </div>
+                            <p> Crea un nuevo examen rellenando un simple formulario y añade un nuevo test a los usuarios.</p>
+                        </div></a>
                         <!-- /.col-lg-4 -->
-                        <div class="col-lg-4"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <img class="img-circle" src="../img/code.jpg" alt="Imagen de una estanteria con libros" title="Libros" width="140" height="140">
+                        <a href="editar_examen.html"><div class="col-lg-4">
+                            <div class="grey-circle"><i class="fa fa-pencil-square-o fa-5x" aria-hidden="true" style="margin-left: 14px;margin-top: 4px;"></i></div>
                             <h2>Editar examen </h2>
-                            <p> Amplia oferta de temas y exámenes. Selecciona el que más te interese y practica facilmente.</p>
-                        </div>
+                            <p> Edita un examen ya existente.</p>
+                        </div></a>
                         <!-- /.col-lg-4 -->
-                        <div class="col-lg-4"><i class="fa fa-bar-chart" aria-hidden="true"></i> <img class="img-circle" src="../img/AprobadoPorChuckNorrisNegro.png" alt="Imagen de una libreta" title="Libreta" width="140" height="140">
+                        <a href="estadisticas.html"><div class="col-lg-4">
+                            <div class="grey-circle"><i class="fa fa-bar-chart fa-5x" aria-hidden="true" style="margin-left: 8px;"></i></div>
                             <h2>Panel de Estadísticas </h2>
-                            <p> La alta fiabilidad nos avala.</p>
-                        </div>
+                            <p> Estadísticas en tiempo real de los resultados globales.</p>
+                        </div></a>
                         <!-- /.col-lg-4 -->
                     </div>
                     <!-- /.row -->
