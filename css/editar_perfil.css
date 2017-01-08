@@ -5,6 +5,10 @@
 .fa-pencil-square-o {
     margin-left: 7px;
 }
-h3{
+h3 {
     text-align: center;
+}
+#user_photo {
+    max-height: 300px;
+    max-width: 300px;
 }
