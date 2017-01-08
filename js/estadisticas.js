@@ -1,4 +1,3 @@
-var array_datos = ["Notas medias por tema", "Notas medias total curso"];
 var array_response;
 var array_temas = [];
 var array_notas = [];
@@ -7,6 +6,15 @@ var array_etiquetas = ["aprobados", "suspensos"];
 var array_resultados = [];
 
 $(function() {
+  //Mostar y Ocultar
+  $('#barra').click(function () {
+    $(".myChart").show("slow");
+    $(".myPie").hide("slow");
+  });
+  $('#pie').click(function () {
+    $(".myPie").show("slow");
+    $(".myChart").hide("slow");
+  });
   //Obtener los datos de los temas
   $.ajax({
     url: '../src/public/estadisticas/temas',
@@ -19,13 +27,12 @@ $(function() {
         array_notas.push(array_response[index].nota_media);
       });
       creacionBarras();
-      //creacionPie();
     },
     error: function (jqXHR, textStatus, errorThrown) {
       alert("error");
     }
   });
-    
+
   //Obtener los datos de alumnos aprobados
   $.ajax({
     url: '../src/public/estadisticas/global_results',
@@ -39,8 +46,8 @@ $(function() {
     error: function (jqXHR, textStatus, errorThrown) {
       alert("error");
     }
-  });    
-    
+  });
+
 });
 
 function creacionBarras() {
@@ -75,7 +82,11 @@ function creacionBarras() {
           scales: {
               yAxes: [{
                   ticks: {
-                      beginAtZero:true
+                      beginAtZero:true,
+                      max: 10,
+                      min: 0,
+                      stepSize: 1,
+                      suggestedMax: 100,
                   }
               }]
           }
@@ -117,7 +128,7 @@ function creacionPie() {
               yAxes: [{
                   ticks: {
                       beginAtZero:true
-                  }
+                  },
               }]
           }
       }

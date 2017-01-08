@@ -13,8 +13,8 @@ var questionIndex = 1;
 var questionResource = '';
 
 var answersLog = new Object();
-// Esto habrá que cambiarlo al integrarlo en el proyecto general
-answersLog.id_usuario = 1;
+// Esto habrá que cambiarlo al integrarlo en el proyecto general (Cambiado)
+answersLog.id_usuario =global_id_user;
 
 // Añadido para recuperar preguntas al retroceder
 var respuestas = [];

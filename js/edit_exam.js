@@ -44,9 +44,8 @@ $(function () {
     $('#guardar_examen').on('click', function() {
         guardar(JSON.parse(examen.examen_json));
     });
-    // Manejador de evento para el botón "Descartar cambios"
-   
-        
+    
+    // Manejador de evento para el botón "Descartar cambios"           
     $('#descartar').click(function() {
             if(window.confirm("¿Estas seguro? Los cambios se perderán.")){
                  location.reload();    

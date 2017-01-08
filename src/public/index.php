@@ -69,7 +69,6 @@ $app->get('/examenes/{idT}', function($request, $response, $args) {
 
 // Load the selected exam info data into $_SESSION variable (to optimize the calls to database) and return exam time in minutes
 $app->get('/examen/get/{idE}', function($request, $response, $args) { 
-    //session_destroy();
     
     $idE = $args['idE'];         
     $sth = $this->db->prepare("SELECT examen_json, porcentaje_aprobar, tiempo_minutos, descripcion FROM examen WHERE id_examen = $idE");
@@ -299,7 +298,7 @@ $app->post('/user/new', function (Request $request, Response $response) {
     $response = array('status' => $status, 'data' => $data);
     return (json_encode($response, JSON_UNESCAPED_UNICODE)); 
 });
-
+    
 $app->get('/user/login', function (Request $request, Response $response) {
     //Getting parsed data from request 
     $usuario = $request->getQueryParams();  
@@ -309,12 +308,23 @@ $app->get('/user/login', function (Request $request, Response $response) {
     
     $sth = $this->db->prepare("SELECT * FROM usuario WHERE login = '$login' AND password = '$password'");
     $sth->execute();        
-    $exists = $sth->fetch();   
+    $user_db = $sth->fetch();   
     
-    if($exists){
+    if($user_db){
         $status = "success";
-        $data = "¡Login correcto!";  
+        $data = "¡Login correcto!"; 
         $_SESSION["logged"] = true;
+        
+        $_SESSION["user_id"] = $user_db['id_usuario'];
+        $_SESSION["user_nif"] = $user_db['nif'];        
+        $_SESSION["user_nombre"] = $user_db['nombre'];
+        $_SESSION["user_apellido1"] = $user_db['apellido_1'];
+        $_SESSION["user_apellido2"] = $user_db['apellido_2'];
+        $_SESSION["user_fecha_nacimiento"] = $user_db['fecha_nacimiento'];
+        $_SESSION["user_email"] = $user_db['login'];        
+        $_SESSION["user_img"] = $user_db['img_perfil'];
+        $_SESSION["user_admin"] = $user_db['admin'];        
+        
     }else{
         $status = "error";
         $data = "¡Login no válido!";  
@@ -356,15 +366,6 @@ $app->get('/estadisticas/global_results', function (Request $request, Response $
     $sth->execute();        
     $temas = $sth->fetchAll(); 
     return (json_encode($temas, JSON_UNESCAPED_UNICODE));
-});
-
-
-
-// Example
-$app->get('/hello/{name}', function (Request $request, Response $response) {
-    $name = $request->getAttribute('name');
-    $response->getBody()->write("Hello, $name");
-    return $response;
 });
 
 $app->run();

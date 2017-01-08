@@ -1,5 +1,5 @@
 var idUsuario = 1;
-var url = '../src/public/historial/examenes/1';
+var url = '../src/public/historial/examenes/' + global_id_user;
 var idDetalleExamen;
 
 $(function() {

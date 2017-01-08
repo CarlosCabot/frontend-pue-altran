@@ -1,8 +1,43 @@
 h1 {
     margin: 0 auto;
 }
+.control {
+  width: 100%;
+  text-align: center;
+}
+.control-boton {
+  font-size: 1.2em;
+  border: solid 1px;
+  padding: 5px;
+  -ms-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+.control-boton:hover {
+  border: solid 3px black;
+  font-size: 1.5em;
+  color: black;
+  -ms-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.myChart, .myPie {
+  width: 100%;
+  display: none;
+  margin: 0 auto;
+}
+.myChart {
+  display: block;
+}
 .container-chart {
-  width: 500px;
-  height: 700px;
-  margin: 50px auto;
+  width: 70%;
+  margin: 0 auto;
+}
+.container-pie{
+  width: 50%;
+  margin: 0 auto;
 }
