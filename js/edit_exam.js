@@ -45,9 +45,13 @@ $(function () {
         guardar(JSON.parse(examen.examen_json));
     });
     // Manejador de evento para el botón "Descartar cambios"
-    $('#descartar').on('click', function() {
-        descartar();
-    });
+   
+        
+    $('#descartar').click(function() {
+            if(window.confirm("¿Estas seguro? Los cambios se perderán.")){
+                 location.reload();    
+            }             
+    });   
 
 // fin de la función principal   
 });	
@@ -114,25 +118,25 @@ function cargaFormulario(idE){
 function metaInfoExamen(examen) {
     var metaInfoHTML = '<h4 class="bg-info">Datos del examen "' + examen.nombre + '"</h4>'
                         +'<div class="form-group">'
-                            +'<label for="nombreExamen" class="col-md-3 control-label">Nombre examen:</label>'
+                            +'<label for="nombreExamen" class="col-md-3 control-label">Nombre examen</label>'
                             +'<div class="col-md-9">'
                                 +'<input type="text" id="nombreExamen" name="nombreExamen" value="" class="form-control"/>'
                             +'</div>'
                         +'</div>'
                         +'<div class="form-group">'
-                            +'<label for="porcentaje" class="col-md-3 control-label">Porcentaje aprobado:</label>'
+                            +'<label for="porcentaje" class="col-md-3 control-label">Porcentaje aprobado</label>'
                             +'<div class="col-md-9">'
                                 +'<input type="number" id="porcentaje" name="porcentaje" value="" class="form-control"/>'
                             +'</div>'
                         +'</div>'
                         +'<div class="form-group">'
-                            +'<label for="tiempo" class="col-md-3 control-label">Duración examen:</label>'
+                            +'<label for="tiempo" class="col-md-3 control-label">Duración examen</label>'
                             +'<div class="col-md-9">'
                                 +'<input type="number" id="tiempo" name="tiempo" value="" class="form-control"/>'
                             +'</div>'
                         +'</div>'
                         +'<div class="form-group">'
-                            +'<label for="descripcion" class="col-md-3 control-label">Descripción:</label>'
+                            +'<label for="descripcion" class="col-md-3 control-label">Descripción</label>'
                             +'<div class="col-md-9">'
                                 +'<textarea id="descripcion" rows="4" cols="50" class="form-control"> </textarea>'
                             +'</div>'
@@ -152,37 +156,37 @@ function contenidoExamen(preguntas) {
     $.each(preguntas, function(key, value){
         contenidoExamen += '<div class="row"><h4 class="col-md-3">Pregunta '+ value.id_pregunta +'</h4></div>'
                             +'<div class="form-group">'
-                                +'<label for="enunciado'+value.id_pregunta+'" class="col-md-3 control-label">Enunciado:</label>'
+                                +'<label for="enunciado'+value.id_pregunta+'" class="col-md-3 control-label">Enunciado</label>'
                                 +'<div class="col-md-9">'
                                     +'<input type="text" id="enunciado'+value.id_pregunta+'" name="enunciado" class="form-control" value="' + value.enunciado + '">'
                                 +'</div>'
                             +'</div>'
                             +'<div class="form-group">'
-                                +'<label for="respuesta_A'+value.id_pregunta+'" class="col-md-3 control-label">Respuesta A:</label>'
+                                +'<label for="respuesta_A'+value.id_pregunta+'" class="col-md-3 control-label">Respuesta A</label>'
                                 +'<div class="col-md-9">'
                                     + '<input type="text" id="respuesta_A'+value.id_pregunta+'" name="respuesta_A" class="form-control" value="' + value.respuestas.A +'">'
                                 +'</div>'
                             +'</div>'
                             +'<div class="form-group">'
-                                +'<label for="respuesta_B'+value.id_pregunta+'" class="col-md-3 control-label">Respuesta B:</label>'
+                                +'<label for="respuesta_B'+value.id_pregunta+'" class="col-md-3 control-label">Respuesta B</label>'
                                 +'<div class="col-md-9">'
                                     + '<input type="text" id="respuesta_B'+value.id_pregunta+'" name="respuesta_B" class="form-control" value="' + value.respuestas.B +'">'
                                 +'</div>'
                             +'</div>'
                             +'<div class="form-group">'
-                                +'<label for="respuesta_C'+value.id_pregunta+'" class="col-md-3 control-label">Respuesta C:</label>'
+                                +'<label for="respuesta_C'+value.id_pregunta+'" class="col-md-3 control-label">Respuesta C</label>'
                                 +'<div class="col-md-9">'
                                     + '<input type="text" id="respuesta_C'+value.id_pregunta+'" name="respuesta_C" class="form-control" value="' + value.respuestas.C +'">'
                                 +'</div>'
                             +'</div>'
                             +'<div class="form-group">'
-                                +'<label for="respuesta_D'+value.id_pregunta+'" class="col-md-3 control-label">Respuesta D:</label>'
+                                +'<label for="respuesta_D'+value.id_pregunta+'" class="col-md-3 control-label">Respuesta D</label>'
                                 +'<div class="col-md-9">'
                                     + '<input type="text" id="respuesta_D'+value.id_pregunta+'" name="respuesta_D" class="form-control" value="' + value.respuestas.D +'">'
                                 +'</div>'
                             +'</div>';
                     
-        contenidoExamen +='<div class="form-group last-group">'
+        contenidoExamen +='<div class="form-group">'
                                 + '<label class="col-md-3 control-label">Solución: </label>' 
                                 + '<div class="col-md-9">';
         
@@ -218,49 +222,50 @@ function contenidoExamen(preguntas) {
 // *** Funciones para guardar o descartar los cambios ***
 function guardar(preguntas){
     // alert("vamos a guardar");
-    var edited= {
-        nombre: "",
-        id_tema: "", 
-        examen_json: "", 
-        porcentaje_aprobar: undefined, 
-        tiempo_minutos: undefined, 
-        descripcion: ""
-    };
-        edited.id_tema = $('#tema option:selected').val();
-        edited.nombre = $('#nombreExamen').val();
-        edited.porcentaje_aprobar = $('#porcentaje').val();
-        edited.tiempo_minutos = $('#tiempo').val();
-        edited.descripcion = $('#descripcion').val();
+    var r = confirm("Seguro que desea guardar los cambios realizados!");
+    if (r == true) {
+            var edited= {
+                nombre: "",
+                id_tema: "", 
+                examen_json: "", 
+                porcentaje_aprobar: undefined, 
+                tiempo_minutos: undefined, 
+                descripcion: ""
+            };
+                edited.id_tema = $('#tema option:selected').val();
+                edited.nombre = $('#nombreExamen').val();
+                edited.porcentaje_aprobar = $('#porcentaje').val();
+                edited.tiempo_minutos = $('#tiempo').val();
+                edited.descripcion = $('#descripcion').val();
 
-        // Montar el objeto JSON con las preguntas
-        var pregunta;
-        var array_preguntas = [];
-        $.each(preguntas, function(key, value){
-            pregunta = '{"id_pregunta":'+ (key+1) +',"enunciado":"'+ $('#enunciado'+(key+1)).val() +'","respuestas":{"A":"'+ $('#respuesta_A'+(key+1)).val() +'","B":"'+ $('#respuesta_B'+(key+1)).val() +'","C":"'+ $('#respuesta_C'+(key+1)).val() +'","D":"'+ $('#respuesta_D'+(key+1)).val() +'","solucion":"'+ $('input[name=solucion'+(key+1)+']:checked').val() +'"}}'; 
-            array_preguntas.push(pregunta);
-        });
-        edited.examen_json += '[';
-        for(var i=0; i < array_preguntas.length; i++){
-            edited.examen_json += array_preguntas[i];
-            if(i+1 < array_preguntas.length){
-                edited.examen_json += ",";
-            }
-        }
-        edited.examen_json += ']';
-        console.log(edited.examen_json);
-        $.ajax({
-            type: 'post', 
-            url: rootURL + '/examen/update', 
-            dataType: "json", 
-            data: { id_examen: idExamen, nombre: edited.nombre, id_tema: edited.id_tema, examen_json: edited.examen_json, porcentaje_aprobar: edited.porcentaje_aprobar, tiempo_minutos: edited.tiempo_minutos, descripcion: edited.descripcion }, 
-            success: function (data, textStatus, jqXHR) {
-                alert('Exámen guardado con éxito');
-            }, 
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert('error: ' + textStatus);
-            }
-        });
-}
-function descartar(){
-    alert("Se borraran los cambios realizados");
+                // Montar el objeto JSON con las preguntas
+                var pregunta;
+                var array_preguntas = [];
+                $.each(preguntas, function(key, value){
+                    pregunta = '{"id_pregunta":'+ (key+1) +',"enunciado":"'+ $('#enunciado'+(key+1)).val() +'","respuestas":{"A":"'+ $('#respuesta_A'+(key+1)).val() +'","B":"'+ $('#respuesta_B'+(key+1)).val() +'","C":"'+ $('#respuesta_C'+(key+1)).val() +'","D":"'+ $('#respuesta_D'+(key+1)).val() +'","solucion":"'+ $('input[name=solucion'+(key+1)+']:checked').val() +'"}}'; 
+                    array_preguntas.push(pregunta);
+                });
+                edited.examen_json += '[';
+                for(var i=0; i < array_preguntas.length; i++){
+                    edited.examen_json += array_preguntas[i];
+                    if(i+1 < array_preguntas.length){
+                        edited.examen_json += ",";
+                    }
+                }
+                edited.examen_json += ']';
+                console.log(edited.examen_json);
+                $.ajax({
+                    type: 'post', 
+                    url: rootURL + '/examen/update', 
+                    dataType: "json", 
+                    data: { id_examen: idExamen, nombre: edited.nombre, id_tema: edited.id_tema, examen_json: edited.examen_json, porcentaje_aprobar: edited.porcentaje_aprobar, tiempo_minutos: edited.tiempo_minutos, descripcion: edited.descripcion }, 
+                    success: function (data, textStatus, jqXHR) {
+                        alert('Exámen guardado con éxito');
+                        window.location.replace("editar_examen.html");
+                    }, 
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('error: ' + textStatus);
+                    }
+                });
+    }
 }
