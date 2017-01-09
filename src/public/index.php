@@ -335,6 +335,36 @@ $app->get('/user/login', function (Request $request, Response $response) {
     return (json_encode($response, JSON_UNESCAPED_UNICODE));     
 });
 
+$app->get('/user/edit/{idU}', function ($request, $response, $args) {
+    $idU = $args['idU'];  
+            
+    $sth = $this->db->prepare(" SELECT id_usuario, nif, nombre, apellido_1, apellido_2, fecha_nacimiento, img_perfil, login FROM usuario WHERE id_usuario = '$idU' ");
+    $sth->execute();        
+    $user_db = $sth->fetch();   
+
+    return (json_encode($user_db, JSON_UNESCAPED_UNICODE));     
+});
+
+$app->post('/user/update', function ($request, $response) {     
+    //Getting parsed data from request 
+    $usuario = $request->getParsedBody();   
+    
+    $id_usuario = $usuario["id_usuario"];
+    $nombre = $usuario["nombre"];
+    $apellido_1 = $usuario["apellido_1"];  
+    $apellido_2 = $usuario["apellido_2"];
+    $fecha_nacimiento = $usuario["fecha_nacimiento"];  
+    $nif = $usuario["nif"];
+    $login = $usuario["login"];  
+    $password = $usuario["password"];
+    
+    $sth = $this->db->prepare(" UPDATE usuario SET nombre='$nombre', apellido_1='$apellido_1', apellido_1='$apellido_2', fecha_nacimiento='$fecha_nacimiento', nif='$nif', login='$login', password='$password'' WHERE id_usuario = '$idU' ");
+    $sth->execute();  
+
+    return (json_encode($user_db, JSON_UNESCAPED_UNICODE));     
+});
+
+
 /*
 * Ver exámenes
 */

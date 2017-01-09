@@ -70,7 +70,13 @@
                         <div class="form-group">
                             <label id="newPass_confirm" class="col-md-3 control-label" style="display:none">Confirmar nueva contraseña:</label>
                             <div id="edit_7" class="col-md-8" style="display:none">
-                                <input type="password" id="password" class="form-control" name="password" placeholder="Contraseña" ng-model="registro.password" minlength="4" maxlength="30" required>
+                                <input type="password" id="password_confirm" class="form-control" name="password" placeholder="Contraseña" ng-model="registro.password" minlength="4" maxlength="30" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="oldPass" class="col-md-3 control-label" style="display:none">Constaseña actual:</label>
+                            <div id="edit_7" class="col-md-8" style="display:none">
+                                <input type="password" id="password_old" class="form-control" name="password" placeholder="Contraseña" ng-model="registro.password" minlength="4" maxlength="30" required>
                             </div>
                         </div>
                         <hr>
@@ -87,6 +93,9 @@
         </div>         
     
     <?php include("cierre.php") ?>
+       <script>
+            var global_id_user = <?php echo $_SESSION['user_id']; ?>;
+        </script>
         <script type="text/javascript" src="../js/editar_perfil.js"></script>
     </body>
 </html>

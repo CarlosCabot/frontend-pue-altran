@@ -88,6 +88,9 @@
         </div>         
     
 <?php include("cierre.php") ?>
+        <script>
+            var global_id_user = <?php echo $_SESSION['user_id']; ?>;
+        </script>
         <script type="text/javascript" src="../js/editar_perfil.js"></script>
     </body>
 </html>
