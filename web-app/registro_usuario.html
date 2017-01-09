@@ -9,10 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../img/favicon/favicon.ico">
-
     <title>ExamifyMe - Registro de usuario</title>
-
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+     <!-- Google Font, Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/registro_usuario.css">    
    
@@ -20,10 +21,18 @@
 
 <body ng-controller="formulario_registro">
 
-    <div class="container" action="#" onsubmit="return crear_cuenta(this)">
+   <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">          
+          <a class="navbar-brand" href="#">ExamifyMe</a>
+        </div>        
+      </div>
+    </nav>   
+   
+    <div class="container" action="#" onsubmit="return crear_cuenta(this)" style="margin-top:25px;">
 
         <form class="form-signin">
-            <h2 class="form-signin-heading">Crear una cuenta</h2>
+            <h2 class="form-signin-heading">Crear nueva cuenta</h2>
             
             <div id="error_registro">
                 <i class="fa fa-ban" aria-hidden="true"></i><span id="mensaje_error"></span>

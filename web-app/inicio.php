@@ -1,18 +1,15 @@
 <?php include("user_cabecera1.php") ?>
-
-    <!-- Including custom style for this page -->
-    <link rel="stylesheet" href="../css/inicio.css">
               
 <?php include("user_cabecera2.php") ?>      
 
                <!-- Insert content here -->
-                <h1 class="page-header">Inicio</h1>
-                <div class="container marketing" style="text-align:center;margin-top:50px;">
+                <h1 class="page-header"> Inicio</h1>
+                <div class="marketing" style="text-align:center;margin-top:50px;">
                     <!-- Three columns of text below the carousel -->
                     <div class="row">
-                       <div class="col-lg-1"></div>
+                       <div class="col-sm-1"></div>
                         <a href="realizar_examen.php">
-                           <div class="col-lg-4">
+                           <div class="col-sm-4 option_with_icon">
                                 <div class="grey-circle">
                                     <i class="fa fa-pencil fa-5x" aria-hidden="true" ></i>
                                 </div>
@@ -20,9 +17,9 @@
                                 <p> Selecciona el examen a realizar según temas e intenta responder a todas las preguntas antes del timing.<br> ¡Buena suerte!</p>
                             </div>
                         </a>
-                        <div class="col-lg-1"></div>
+                        <div class="col-sm-2"></div>
                         <!-- /.col-lg-4 -->
-                        <a href="ver_examenes.php"><div class="col-lg-4">
+                        <a href="ver_examenes.php"><div option_with_icon class="col-sm-4 option_with_icon">
                             <div class="grey-circle"><i class="fa fa-files-o fa-5x" aria-hidden="true"></i></div>
                                 <h2>Ver mis exámenes </h2>
                                 <p> Echa un vistazo a tu historial de exámenes y mira en detalle que preguntas acertaste y cuales no.</p>

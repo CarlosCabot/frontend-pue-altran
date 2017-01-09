@@ -15,8 +15,11 @@
     <link href="../css/reset.css" rel="stylesheet"> 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Font, Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!-- Custom styles for this template -->
+    <!-- Examify styles -->
+    <link rel="stylesheet" href="../css/inicio.css">     
     <link href="../css/dashboard.css" rel="stylesheet">
-    <link href="../css/web-app1.css" rel="stylesheet"> 
+    <link href="../css/web-app1.css" rel="stylesheet">

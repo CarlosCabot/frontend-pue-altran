@@ -10,8 +10,8 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="inicio_adm.php">ExamifyMe</a> </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="editar_perfil_admin.php">Perfil</a></li>
-                    <li><a href="logout.php">Logout</a></li>
+                    <li><a href="editar_perfil_admin.php"><i class="fa fa-user" aria-hidden="true"></i> Perfil</a></li>
+                    <li><a href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
                 </ul>
 
             </div>
@@ -28,12 +28,12 @@
                     </div>                   
                 </div>
                 <ul class="nav nav-sidebar">
-                    <li id="li_inicio"><a href="inicio_adm.php">Inicio <span class="sr-only">(current)</span></a></li>                    
+                    <li id="li_inicio"><a href="inicio_adm.php"><i class="fa fa-home" aria-hidden="true"></i> Inicio <span class="sr-only">(current)</span></a></li>                    
                 </ul>
                 <ul class="nav nav-sidebar">                                      
-                    <li id="li_crear"><a href="crear_examen.php">Crear examen </a></li>
-                    <li id="li_editar"><a href="editar_examen.php">Editar examen </a></li>
-                    <li id="li_estadisticas"><a href="estadisticas.php">Panel de Estadísticas </a></li>                                        
+                    <li id="li_crear"><a href="crear_examen.php"><i class="fa fa-file-text" aria-hidden="true"></i> Crear examen </a></li>
+                    <li id="li_editar"><a href="editar_examen.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar examen </a></li>
+                    <li id="li_estadisticas"><a href="estadisticas.php"><i class="fa fa-bar-chart" aria-hidden="true"></i> Panel de Estadísticas </a></li>                                        
                 </ul>
             </div>
             <!--/span-->

@@ -88,7 +88,7 @@ INSERT INTO usuario VALUES (NULL, "11223344F", "Daniel", "Sanchez", NULL, "1991-
 INSERT INTO usuario VALUES (NULL, "11223344G", "Samuel", "Allasia", NULL, "1991-05-12", "gates.jpg", "samuelallasia@gmail.com", "12345", false );
 INSERT INTO usuario VALUES (NULL, "11223344X","Super", "Admin", NULL, "1988-07-28", "nemo.png", "admin@gmail.com", "12345", true );
 
-INSERT INTO evaluacion VALUES (NULL, 1, "2016-12-19 23:59:59", 1);
+INSERT INTO evaluacion VALUES (NULL, 1, "2016-12-19 23:59:59", 3);
 INSERT INTO evaluacion VALUES (NULL, 1, "2016-12-18 23:59:59", 2);
 INSERT INTO evaluacion VALUES (NULL, 2, "2016-12-15 22:59:59", 3);
 INSERT INTO evaluacion VALUES (NULL, 3, "2016-12-16 21:59:59", 4);
@@ -103,19 +103,3 @@ INSERT INTO evaluacion_detalle VALUES (NULL, '[{"id_pregunta":1,"respuesta":"A"}
 INSERT INTO evaluacion_detalle VALUES (NULL, '[{"id_pregunta":1,"respuesta":"A"},{"id_pregunta":2,"respuesta":"B"},{"id_pregunta":3,"respuesta":"C"},{"id_pregunta":4,"respuesta":"D"},{"id_pregunta":5,"respuesta":"A"}]', true, 8, 80, 5);
 INSERT INTO evaluacion_detalle VALUES (NULL, '[{"id_pregunta":1,"respuesta":"A"},{"id_pregunta":2,"respuesta":"B"},{"id_pregunta":3,"respuesta":"C"},{"id_pregunta":4,"respuesta":"D"},{"id_pregunta":5,"respuesta":"A"}]', true, 8, 80, 6);
 INSERT INTO evaluacion_detalle VALUES (NULL, '[{"id_pregunta":1,"respuesta":"A"},{"id_pregunta":2,"respuesta":"B"},{"id_pregunta":3,"respuesta":"C"},{"id_pregunta":4,"respuesta":"D"},{"id_pregunta":5,"respuesta":"A"}]', true, 8, 80, 7);
-
-/*DESCRIBE*/
-DESCRIBE tema;
-DESCRIBE examen;
-DESCRIBE evaluacion;
-DESCRIBE evaluacion_detalle;
-DESCRIBE usuario;
-
-/*SELECT*/
-SELECT * FROM tema ORDER BY id_tema;
-SELECT * FROM examen ORDER BY id_examen;
-SELECT * FROM evaluacion;
-SELECT * FROM evaluacion_detalle;
-SELECT * FROM usuario;
-
-SELECT u.nombre, ex.nombre, ev.fecha_hora, ev_det.nota From usuario AS u, examen AS ex, evaluacion AS ev, evaluacion_detalle AS ev_det WHERE u.id_usuario = ev.id_usuario AND ex.id_examen = ev.id_examen AND ev.id_evaluacion = ev_det.id_evaluacion_detalle;

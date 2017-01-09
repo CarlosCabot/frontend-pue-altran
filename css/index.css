@@ -1,11 +1,6 @@
-/*@font-face {
-    font-family: Roboto-Black;
-    src: url(../fonts/Roboto/roboto-black.ttf);
-}
-
 body{
-    font-family: Roboto-Black;
-}*/
+    font-family: 'Roboto', sans-serif;;
+}
 
 #error_login {
     width: width: 100%;

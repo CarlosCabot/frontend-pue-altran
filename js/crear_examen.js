@@ -58,7 +58,7 @@ $(function () {
                 , dataType: "json"
                 , data: { nombre: examen.nombre, id_tema: examen.id_tema, examen_json: examen.examen_json, porcentaje_aprobar: examen.porcentaje_aprobar, tiempo_minutos: examen.tiempo_minutos, descripcion: examen.descripcion }
                 , success: function (data, textStatus, jqXHR) {
-                    alert("Examen creado correctamente");
+                    alert("¡Examen creado correctamente!");
                     location.reload();
                 }
                 , error: function (jqXHR, textStatus, errorThrown) {
@@ -144,7 +144,7 @@ function crear_examen (){
 function add_pregunta(){  
     $("#error_crear").css("display","none");
     
-    var pregunta = '{"id_pregunta":'+ array_preguntas.length+1 +',"enunciado":"'+ $('#enunciado').val() +'","respuestas":{"A":"'+ $('#respuesta_A').val() +'","B":"'+ $('#respuesta_B').val() +'","C":"'+ $('#respuesta_C').val() +'","D":"'+ $('#respuesta_D').val() +'","solucion":"'+ $('input[name=solucion]:checked').val() +'"}}';    
+    var pregunta = '{"id_pregunta":'+ (array_preguntas.length+1) +',"enunciado":"'+ $('#enunciado').val() +'","respuestas":{"A":"'+ $('#respuesta_A').val() +'","B":"'+ $('#respuesta_B').val() +'","C":"'+ $('#respuesta_C').val() +'","D":"'+ $('#respuesta_D').val() +'","solucion":"'+ $('input[name=solucion]:checked').val() +'"}}';    
          
     //Añadir la pregunta al array
     array_preguntas.push(pregunta);

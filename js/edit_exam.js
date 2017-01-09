@@ -221,7 +221,7 @@ function contenidoExamen(preguntas) {
 // *** Funciones para guardar o descartar los cambios ***
 function guardar(preguntas){
     // alert("vamos a guardar");
-    var r = confirm("Seguro que desea guardar los cambios realizados!");
+    var r = confirm("¿Estas seguro?");
     if (r == true) {
             var edited= {
                 nombre: "",
@@ -259,11 +259,11 @@ function guardar(preguntas){
                     dataType: "json", 
                     data: { id_examen: idExamen, nombre: edited.nombre, id_tema: edited.id_tema, examen_json: edited.examen_json, porcentaje_aprobar: edited.porcentaje_aprobar, tiempo_minutos: edited.tiempo_minutos, descripcion: edited.descripcion }, 
                     success: function (data, textStatus, jqXHR) {
-                        alert('Exámen guardado con éxito');
-                        window.location.replace("editar_examen.html");
+                        alert('¡Exámen editado con éxito!');
+                        window.location.replace("editar_examen.php");
                     }, 
                     error: function (jqXHR, textStatus, errorThrown) {
-                        alert('error: ' + textStatus);
+                        //alert('error: ' + textStatus);
                     }
                 });
     }

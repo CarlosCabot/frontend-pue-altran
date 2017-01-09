@@ -116,6 +116,7 @@ $app->get('/examen/pregunta/{idP}', function($request, $response, $args) {
 });
 
 
+
 // Recibir datos a insertar en BBDD y retornar si el usuario ha aprobado, con que nota y el porcentaje de aciertos
 $app->post('/examen/finalize', function (Request $request, Response $response){        
     //Getting parsed data from request 
@@ -173,6 +174,9 @@ $app->post('/examen/finalize', function (Request $request, Response $response){
     $result = array( "aprobado" => $aprobado, "nota" => $nota, "porcentaje_aciertos" => $porcentaje_aciertos);
     return (json_encode($result));
 });
+
+
+
 
 // Recibir datos del nuevo tema y insertarlo en BBDD
 $app->post('/tema/new', function (Request $request, Response $response){ 
@@ -355,13 +359,41 @@ $app->post('/user/update', function ($request, $response) {
     $apellido_2 = $usuario["apellido_2"];
     $fecha_nacimiento = $usuario["fecha_nacimiento"];  
     $nif = $usuario["nif"];
-    $login = $usuario["login"];  
-    $password = $usuario["password"];
+    $login = $usuario["login"];      
+    $password_old = $usuario["password_old"];
+    $password_new = $usuario["password_new"];    
+    $profile_img = $usuario["profile_img"];
     
-    $sth = $this->db->prepare(" UPDATE usuario SET nombre='$nombre', apellido_1='$apellido_1', apellido_1='$apellido_2', fecha_nacimiento='$fecha_nacimiento', nif='$nif', login='$login', password='$password'' WHERE id_usuario = '$idU' ");
-    $sth->execute();  
-
-    return (json_encode($user_db, JSON_UNESCAPED_UNICODE));     
+    $sth = $this->db->prepare(" SELECT password FROM usuario WHERE id_usuario = '$id_usuario' ");
+    $sth->execute();        
+    $user_db = $sth->fetch();   
+    
+    if($user_db['password'] === $password_old){
+        
+         try{
+             
+            $sth = $this->db->prepare(" UPDATE usuario SET nombre = '$nombre', apellido_1 = '$apellido_1', apellido_2 = '$apellido_2', fecha_nacimiento = '$fecha_nacimiento', nif = '$nif', login = '$login', password = '$password_new', img_perfil = '$profile_img' WHERE id_usuario = '$id_usuario' ");
+            $sth->execute(); 
+             
+            $status = "success";
+            $data = "Perfil de usuario actualizado";
+             
+        }catch (Exception $e) {
+             
+            $status = "error";
+            $data = "Perfil de usuario no actualizado";
+             
+        }    
+        
+    }else{
+        
+        $status = "error";
+        $data = "Las contaseña introducida no es correcta.";
+        
+    }        
+         
+    $response = array('status' => $status, 'data' => $data);
+    return (json_encode($response, JSON_UNESCAPED_UNICODE));
 });
 
 
