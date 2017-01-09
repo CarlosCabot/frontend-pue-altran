@@ -1,39 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include("admin_cabecera1.php") ?>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../img/favicon.ico">
-    <title>ExamifyMe edit profile</title>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <!-- Font awesome for data edit icon -->
-    <link rel="stylesheet" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- Including custom style for this page -->
     <link rel="stylesheet" href="../css/editar_perfil.css">
-</head>
-
-<body>
-   <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="inicio.html">ExamifyMe</a> </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="inicio.html">Volver al menú de inicio</a></li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-                
-            </div>
-        </div>
-    </nav>
-    <div class="container">
+              
+<?php include("admin_cabecera2.php") ?>    
+    
         <h1>Editar perfil</h1>
         <hr>
         <div class="row">
@@ -46,6 +17,7 @@
                     <input type="file" class="form-control">
                 </div>
             </div>
+            <br />
 
             <!-- edit form column -->
             <div class="col-md-9 personal-info">
@@ -113,15 +85,13 @@
                     </form>
                 </div>
             </div>
-        </div>
-        <hr>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
-    </script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/editar_perfil.js"></script>
-</body>
-
+        </div>         
+    
+<?php include("cierre.php") ?>
+        <script>
+            var global_id_user = <?php echo $_SESSION['user_id']; ?>;
+        </script>
+        <script type="text/javascript" src="../js/editar_perfil.js"></script>
+    </body>
 </html>
+

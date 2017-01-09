@@ -37,6 +37,7 @@ nombre VARCHAR(30) NOT NULL,
 apellido_1 VARCHAR(30) NOT NULL,
 apellido_2 VARCHAR(30),
 fecha_nacimiento DATE,
+img_perfil VARCHAR(60),
 login VARCHAR(60) UNIQUE,
 password VARCHAR(30),
 admin BOOLEAN,
@@ -77,13 +78,15 @@ INSERT INTO examen VALUES (NULL, "Historia",  2, '[{"id_pregunta":1,"enunciado":
 INSERT INTO examen VALUES (NULL, "Preguntas básicas",  3, '[{"id_pregunta":1,"enunciado":"¿Cuál de las siguientes empresas se fundó antes?","respuestas":{"A":"McDonald''s","B":"Burger King","C":"Apple","D":"Microsoft","solucion":"B"}},{"id_pregunta":2,"enunciado":"De los siguientes artistas marciales, ¿cuál no nació en China?","respuestas":{"A":"Bruce Lee","B":"Jackie Chan","C":"Jet Lee","D":"Sasaki Kojiro","solucion":"D"}},{"id_pregunta":3,"enunciado":"Cuál de las siguientes montañas es más alta?","respuestas":{"A":"Mont Blanc","B":"Mauna Kea","C":"El Matterhorn","D":"Kilimanjaro","solucion":"D"}},{"id_pregunta":4,"enunciado":"¿Cuál es el río más caudaloso del mundo?","respuestas":{"A":"Amazonas","B":"Nilo","C":"Yangtsé","D":"Misisipi","solucion":"A"}},{"id_pregunta":5,"enunciado":"¿Cuál de los siguientes mamíferos es más grande?","respuestas":{"A":"Oso polar","B":"Tigre de bengala","C":"Morsa","D":"Alce","solucion":"C"}},{"id_pregunta":6,"enunciado":"Barack Obama es:","respuestas":{"A":"El presidente de los Estados Unidos","B":"El ex-presidente de los Estados Unidos","C":"El nombre de una especie de parásito","D":"B y C","solucion":"D"}}]', 60, 30, 'Descripción examen Preguntas Básicas');
 INSERT INTO examen VALUES (NULL, "Aritmética para niños",  4, '[{"id_pregunta":1,"enunciado":"Cuántos divisores tiene el número 12?","respuestas":{"A":"1","B":"12","C":"6","D":"4","solucion":"C"}},{"id_pregunta":2,"enunciado":"¿Qué afirmación es incorrecta?","respuestas":{"A":"La suma de dos números pares es par","B":"La suma de dos números impares es par","C":"El producto de dos números impares es par","D":"La tabla del 2 no tiene productos impares","solucion":"C"}},{"id_pregunta":3,"enunciado":"¿Cuál es el producto del cuadrado de 5 por el cuadrado de 2?","respuestas":{"A":"10","B":"100","C":"50","D":"27","solucion":"B"}},{"id_pregunta":4,"enunciado":"El residuo de una división es:","respuestas":{"A":"Lo que sobra para que la división fuera exacta","B":"Algo que no se sabe lo que es","C":"Lo que daría la parte decimal del resultado","D":"A y C","solucion":"D"}},{"id_pregunta":5,"enunciado":"¿Cuál es el máximo común divisor de 12 y 36?","respuestas":{"A":"6","B":"4","C":"1","D":"12","solucion":"D"}},{"id_pregunta":6,"enunciado":"¿Cuánto es el cuadrado de x menos el cuadrado de x-1?  ","respuestas":{"A":"0","B":"2x-1","C":"1","D":"x","solucion":"B"}}]', 50, 30, 'Descripción examen Aritmética para niños');
 
-INSERT INTO usuario VALUES (NULL, "11223344A","Carlos", "Cabot", NULL, "1988-07-28", "carloscabotdp@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344B", "Irene", "Giró", NULL, "1991-05-12", "irene.giroparadell@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344C","Antony", "Medina", NULL, "1991-05-12", "iantony.01.1991@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344D", "Stanka", "Asenova", NULL, "1991-05-12", "ctahka@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344E", "Daniel", "Colomer", NULL, "1991-05-12", "colomertrave@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344F", "Daniel", "Sanchez", NULL, "1991-05-12", "dsbdn21@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344G", "Samuel", "Allasia", NULL, "1991-05-12", "samuelallasia@gmail.com", "12345", false );
+
+INSERT INTO usuario VALUES (NULL, "11223344A","Carlos", "Cabot", NULL, "1988-07-28", "rickroll.jpg", "carloscabotdp@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344B", "Irene", "Giró", NULL, "1991-05-12", "wonder.png", "irene.giroparadell@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344C","Antony", "Medina", NULL, "1991-05-12", "gates.jpg","iantony.01.1991@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344D", "Stanka", "Asenova", NULL, "1991-05-12", "wonder.png", "ctahka@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344E", "Daniel", "Colomer", NULL, "1991-05-12", "gates.jpg", "colomertrave@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344F", "Daniel", "Sanchez", NULL, "1991-05-12", "gates.jpg", "dsbdn21@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344G", "Samuel", "Allasia", NULL, "1991-05-12", "gates.jpg", "samuelallasia@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344X","Super", "Admin", NULL, "1988-07-28", "nemo.png", "admin@gmail.com", "12345", true );
 
 INSERT INTO evaluacion VALUES (NULL, 1, "2016-12-19 23:59:59", 1);
 INSERT INTO evaluacion VALUES (NULL, 1, "2016-12-18 23:59:59", 2);

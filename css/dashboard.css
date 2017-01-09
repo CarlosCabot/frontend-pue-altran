@@ -110,8 +110,21 @@ body {
 */
 
 #user_photo {
-    padding: 10%;
     border-radius: 100%;
-    width: 100%;
-    margin-bottom: 20px;
+    width: 100%;    
+}
+
+#pic_container{
+    text-align: center;
+    padding: 10%;
+}
+
+#user_name{
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+#li_inicio{
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
 }

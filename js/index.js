@@ -9,7 +9,7 @@ function login_usuario() {
         , success: function (result) {
             if (result.status == "success") {
                 $('#error_login').css("display", "none");
-                window.location.replace("web-app/inicio.html");
+                window.location.replace("web-app/redirect.php");
             }
             else if (result.status == "error") {
                 $('#mensaje_error').text(result.data);

@@ -1,7 +1,5 @@
 var rootURL = '../src/public';
-
 var app = angular.module("app", []);
-
 app.controller("formulario_registro", function ($scope) {
     $scope.registro = {
         nombre: ''
@@ -14,7 +12,7 @@ app.controller("formulario_registro", function ($scope) {
     }
 });
 
-function crear_cuenta (){
+function crear_cuenta() {
     $.ajax({
         url: rootURL + '/user/new'
         , method: 'POST'
@@ -23,7 +21,29 @@ function crear_cuenta (){
         , success: function (result) {
             if (result.status == "success") {
                 $('#error_registro').css("display", "none");
-                window.location.replace("web-app/inicio.html");
+                $.ajax({
+                    url: rootURL + '/user/login'
+                    , method: 'GET'
+                    , data: $("form").serialize()
+                    , dataType: 'json'
+                    , success: function (result) {
+                        if (result.status == "success") {
+                            $('#error_login').css("display", "none");
+                            window.location.replace("redirect.php");
+                        }
+                        else if (result.status == "error") {
+                            $('#mensaje_error').text(result.data);
+                            $('#error_login').css("display", "inherit");
+                        }
+                        else {
+                            // Api error
+                            alert("Unexpected error from api");
+                        }
+                    }
+                    , error: function (jqXHR, textStatus, errorThrown) {
+                        alert(textStatus);
+                    }
+                });
             }
             else if (result.status == "error") {
                 $('#mensaje_error').text(result.data);

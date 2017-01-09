@@ -1,27 +1,35 @@
 var rootURL = '../src/public';
 
-function cargar_datos (){
+$(function () {
     $.ajax({
-        url: rootURL + ''
+        url: rootURL + '/user/edit/' + global_id_user
         , method: 'GET'
         , dataType: 'json'
-        , success: function () {
-            if (result.status == "success") {
-                
-            }
-            else {
-                // Api error
-                alert("Unexpected error from api");
-            }
+        , success: function (response) {
+            var array_user = response;
+			cargaUser(array_user);
         }
         , error: function (jqXHR, textStatus, errorThrown) {
             alert(textStatus);
         }
     });
-};
+});
+
+function cargaUser(array_user) {	
+    
+    $("#nombre").val(array_user.nombre);
+    $("#apellido_1").val(array_user.apellido_1);
+    $("#apellido_2").val(array_user.apellido_2);
+    $("#fecha_nacimiento").val(array_user.fecha_nacimiento);
+    $("#nif").val(array_user.nif);
+    $("#login").val(array_user.nif);
+    
+}
+
+
 function modificar_datos (){
     $.ajax({
-        url: rootURL + ''
+        url: rootURL + '/user/update'
         , method: 'POST'
         , data: $("form").serialize()
         , dataType: 'json'
