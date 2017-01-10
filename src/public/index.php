@@ -364,6 +364,8 @@ $app->post('/user/update', function ($request, $response) {
     $password_new = $usuario["password_new"];    
     $profile_img = $usuario["profile_img"];
     
+    $_SESSION["user_img"] = $profile_img;
+    
     $sth = $this->db->prepare(" SELECT password FROM usuario WHERE id_usuario = '$id_usuario' ");
     $sth->execute();        
     $user_db = $sth->fetch();   

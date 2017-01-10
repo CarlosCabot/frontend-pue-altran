@@ -5,15 +5,15 @@
               
 <?php include("user_cabecera2.php") ?>    
     
-        <h1>Editar perfil</h1>
+       <h1>Editar perfil</h1>
         <hr>
         <div class="row">
             <!-- left column -->
             <div class="col-md-3">
                 <div class="text-center">
                     <img id="user_photo" src="../img/users/<?php echo $_SESSION['user_img'];?>" alt="avatar">
-                    <h6 id="profile_pic_name"><?php echo $_SESSION['user_img'];?></h6>
-                    <input type="file" id="profile_img" class="form-control">
+                    <h6 id="profile_pic_name"><?php echo $_SESSION['user_img'];?></h6>   
+                    <input type="file" class="btn btn-default" name="fileToUpload" id="fileToUpload" required style="width: 100%;margin-bottom:5px;">    
                 </div>
             </div>
 
@@ -85,6 +85,21 @@
         </div>         
     
     <?php include("cierre.php") ?>
+    
+    <script>
+        function upload(){
+            $.ajax
+            ({
+                type: "POST",
+                url: "upload.php",
+                success: function()
+                {
+                    alert("uploaded");
+                }
+            });
+        }
+    </script>
+   
        <script>
             var global_id_user = <?php echo $_SESSION['user_id']; ?>;
         </script>

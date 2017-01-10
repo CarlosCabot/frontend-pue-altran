@@ -87,10 +87,10 @@ function userUpdate() {
     newData.login = $('#login').val();
     newData.password_old = $('#password_old').val();
     newData.password_new = $('#password_new').val();
-    if($('#profile_img').val() === ''){
+    if($('#fileToUpload').val() === ''){
         newData.profile_img = profile_pic_name;
     }else{        
-        var obtain_profile = $('#profile_img').val(); 
+        var obtain_profile = $('#fileToUpload').val(); 
         var array = obtain_profile.split('\\');  
         newData.profile_img = array[2];
     }
