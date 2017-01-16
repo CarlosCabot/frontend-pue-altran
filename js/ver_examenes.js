@@ -87,9 +87,11 @@ function mapAnswers(data) {
                 for (var i = 0; i < userAns.length; i++) {
                     if (value.id_pregunta == userAns[i].id_pregunta) {
                         correctObj.respuesta = userAns[i].respuesta;
+                        correctObj.respuesta_texto = value.respuestas[userAns[i].respuesta];
                     }
                 }
                 correctObj.solucion = value.respuestas.solucion;
+                correctObj.solucion_texto = value.respuestas[value.respuestas.solucion];
                 if (correctObj.solucion == correctObj.respuesta) {
                     correctObj.correcto = 'SÍ';
                 }
@@ -112,14 +114,14 @@ function showDetalle(objeto) {
     tableHead += '</thead>';
     var tableBody = '<tbody>';
     $.each(objeto, function (index, value) {
-        tableBody += '<tr>' + '<td>' + value.id_pregunta + '</td>' + '<td>' + value.enunciado + '</td>' + '<td>' + value.respuesta + '</td>' + '<td> ';
+        tableBody += '<tr>' + '<td>' + value.id_pregunta + '</td>' + '<td>' + value.enunciado + '</td>' + '<td>' + value.respuesta +" : "+ value.respuesta_texto +  '</td>' + '<td> ';
         if (value.correcto == 'SÍ') {
             tableBody += '<i style="color:green; font-size:16px;" class="fa fa-check-circle'
         }
         else {
             tableBody += '<i style="color:red; font-size:16px;" class="fa fa-times-circle'
         }
-        tableBody += '" aria-hidden="true"></i></td>' + '<td>' + value.solucion + '</td>';
+        tableBody += '" aria-hidden="true"></i></td>' + '<td>' + value.solucion +" : "+ value.solucion_texto + '</td>';
     })
     tableBody += '</tbody></table></div>';
     var detallesTable = tableHead + tableBody;

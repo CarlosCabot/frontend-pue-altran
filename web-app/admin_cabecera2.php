@@ -23,7 +23,9 @@
             <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
                <div>
                     <div id="pic_container">
-                        <img id="user_photo" src="../img/users/<?php echo $_SESSION['user_img'];?>" alt="User profile pic">
+                        <img id="user_photo" src="../img/users/<?php echo $_SESSION['user_img'];?>" alt="User profile pic">                        
+                    </div>
+                    <div class="user_name_container">
                         <label id="user_name"><?php echo $_SESSION['user_nombre']; ?> <?php echo $_SESSION['user_apellido1']; ?></label>
                     </div>                   
                 </div>

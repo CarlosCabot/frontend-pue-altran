@@ -5,16 +5,16 @@
               
 <?php include("admin_cabecera2.php") ?>    
     
-        <h1>Editar perfil</h1>
+       <h1>Editar perfil</h1>
         <hr>
         <div class="row">
             <!-- left column -->
-            <div class="col-md-3">
-                <div class="text-center">
-                    <img id="user_photo" src="../img/users/<?php echo $_SESSION['user_img'];?>" alt="avatar">
+            <div class="col-md-3">                
+                    <div id="pic_container">
+                        <img id="user_photo" src="../img/users/<?php echo $_SESSION['user_img'];?>" alt="User profile pic">                        
+                    </div>
                     <h6 id="profile_pic_name"><?php echo $_SESSION['user_img'];?></h6>   
-                    <input type="file" class="btn btn-default" name="fileToUpload" id="fileToUpload" required style="width: 100%;margin-bottom:5px;">    
-                </div>
+                    <input type="file" class="btn btn-default" name="fileToUpload" id="fileToUpload" required style="width: 100%;margin-bottom:5px;"> 
             </div>
 
             <!-- edit form column -->
@@ -82,7 +82,7 @@
                     </form>
                 </div>
             </div>
-        </div>         
+        </div>              
         
 <?php include("cierre.php") ?>
         <script>

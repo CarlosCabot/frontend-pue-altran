@@ -159,11 +159,11 @@ function showDescription(data) {
 	timeExam = parseInt(data.tiempo);
 	msecLeft = timeExam * 60 * 1000;
 	var startButton = '<button id="start" name="start" class="btn btn-primary">Empezar examen</button>';
-	var descriptionHTML = '<div class="col-sm-2"></div><div class="col-sm-8" style="margin-left:auto;margin-right:auto;">'
-                        + '<h3>Datos examen:</h3>'
-                        + '<table class="table"><tr><td class="bold">Nombre:</td><td><span class="bg-info">' + nombreSelectedExamen + '</span></td></tr>'
-                        + '<tr><td class="bold">Descripción:</td><td><span class="bg-info">' + data.descripcion + '</span></td></tr>'
-                        + '<tr><td class="bold">Tiempo máximo de realización:</td><td><span class="bg-info">' + data.tiempo + ' minutos</span></td></tr>'
+	var descriptionHTML = '<div class="col-sm-2"></div><div class="col-sm-8 datos-examen">'
+                        + '<h3 style="margin-top: 0px;">Datos examen:</h3>'
+                        + '<table class="table"><tr><td class="bold">Nombre:</td><td><span>' + nombreSelectedExamen + '</span></td></tr>'
+                        + '<tr><td class="bold">Descripción:</td><td><span>' + data.descripcion + '</span></td></tr>'
+                        + '<tr><td class="bold">Tiempo máximo de realización:</td><td><span>' + data.tiempo + ' minutos</span></td></tr>'
                         + '</table>'						
 						+ startButton + '</div>';
 
@@ -175,7 +175,7 @@ function showDescription(data) {
 function startTest() {    
 	var newTemplate = '<div class="col-sm-2"></div><div id="detailContainer" class="col-sm-8"><div id="countdown"></div><div id="question"></div><div id="options"></div></div>';
 	
-    var countdownContent = '<p class="bg-info"><i class="fa fa-clock-o fa-2x" aria-hidden="true" style="color:red; margin-left: 5px;"></i> <span id="time">00:00</span> <i class="fa fa-clock-o fa-2x" aria-hidden="true" style="color:red; margin-right: 5px;"></i></p>';	    
+    var countdownContent = '<p><i class="fa fa-clock-o fa-2x" aria-hidden="true" style="margin-right: 5px;"></i> <span id="time">00:00</span> <i class="fa fa-clock-o fa-2x" aria-hidden="true" style="margin-left: 5px;"></i></p>';	    
     
 	$('#container').html(newTemplate);
     $('#countdown').html(countdownContent);
