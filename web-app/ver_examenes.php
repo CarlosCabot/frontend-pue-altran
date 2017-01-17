@@ -6,7 +6,7 @@
 <?php include("user_cabecera2.php") ?>  
 
                <!-- Insert content here -->
-                <h1 class="page-header">Ver exámenes</h1>
+                <h1 class="page-header">Mis exámenes</h1>
                 <div id="container">
                     <div class="table-responsive">
                         <table class="table table-hover">                            

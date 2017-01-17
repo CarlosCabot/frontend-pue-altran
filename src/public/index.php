@@ -349,6 +349,25 @@ $app->get('/user/edit/{idU}', function ($request, $response, $args) {
     return (json_encode($user_db, JSON_UNESCAPED_UNICODE));     
 });
 
+$app->post('/upload', function ($request, $response, $args){
+    
+    $files = $request->getUploadedFiles();	
+	if (!empty($files['fileToUpload'])) {		
+        $newfile = $files['fileToUpload'];	
+		if ($newfile->getError() === UPLOAD_ERR_OK) {
+			$uploadFileName = $newfile->getClientFilename();
+			$newfile->moveTo("../../img/users/$uploadFileName");
+			$_SESSION["user_img"] = $uploadFileName;
+			$id_usuario = $_SESSION["user_id"];
+			$img_usuario = $_SESSION["user_img"];
+			$sth = $this->db->prepare(" UPDATE usuario SET img_perfil = '$img_usuario' WHERE id_usuario = '$id_usuario' ");
+			$sth->execute(); 
+		}
+    }	
+    
+	return $response->withRedirect('../../web-app/editar_perfil_user.php');
+});
+
 $app->post('/user/update', function ($request, $response) {     
     //Getting parsed data from request 
     $usuario = $request->getParsedBody();   
@@ -370,34 +389,25 @@ $app->post('/user/update', function ($request, $response) {
     $sth->execute();        
     $user_db = $sth->fetch();   
     
-    if($user_db['password'] === $password_old){
-        
-         try{
-             
+    if($user_db['password'] === $password_old){        
+         try{             
             $sth = $this->db->prepare(" UPDATE usuario SET nombre = '$nombre', apellido_1 = '$apellido_1', apellido_2 = '$apellido_2', fecha_nacimiento = '$fecha_nacimiento', nif = '$nif', login = '$login', password = '$password_new', img_perfil = '$profile_img' WHERE id_usuario = '$id_usuario' ");
             $sth->execute(); 
              
             $status = "success";
-            $data = "Perfil de usuario actualizado";
-             
-        }catch (Exception $e) {
-             
+            $data = "Perfil de usuario actualizado";             
+        }catch (Exception $e) {             
             $status = "error";
-            $data = "Perfil de usuario no actualizado";
-             
-        }    
-        
-    }else{
-        
+            $data = "Perfil de usuario no actualizado";             
+        }  
+    }else{        
         $status = "error";
-        $data = "Las contaseña introducida no es correcta.";
-        
+        $data = "Las contaseña introducida no es correcta.";        
     }        
          
     $response = array('status' => $status, 'data' => $data);
     return (json_encode($response, JSON_UNESCAPED_UNICODE));
 });
-
 
 /*
 * Ver exámenes
@@ -412,7 +422,6 @@ $app->get('/historial/examenes/{idU}', function ($request, $response, $args) {
     
     return (json_encode($examenes, JSON_UNESCAPED_UNICODE));  
 });
-
 
 /*
 *   Estadísticas admin

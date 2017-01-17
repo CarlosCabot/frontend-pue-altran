@@ -79,13 +79,13 @@ INSERT INTO examen VALUES (NULL, "Preguntas básicas",  3, '[{"id_pregunta":1,"e
 INSERT INTO examen VALUES (NULL, "Aritmética para niños",  4, '[{"id_pregunta":1,"enunciado":"Cuántos divisores tiene el número 12?","respuestas":{"A":"1","B":"12","C":"6","D":"4","solucion":"C"}},{"id_pregunta":2,"enunciado":"¿Qué afirmación es incorrecta?","respuestas":{"A":"La suma de dos números pares es par","B":"La suma de dos números impares es par","C":"El producto de dos números impares es par","D":"La tabla del 2 no tiene productos impares","solucion":"C"}},{"id_pregunta":3,"enunciado":"¿Cuál es el producto del cuadrado de 5 por el cuadrado de 2?","respuestas":{"A":"10","B":"100","C":"50","D":"27","solucion":"B"}},{"id_pregunta":4,"enunciado":"El residuo de una división es:","respuestas":{"A":"Lo que sobra para que la división fuera exacta","B":"Algo que no se sabe lo que es","C":"Lo que daría la parte decimal del resultado","D":"A y C","solucion":"D"}},{"id_pregunta":5,"enunciado":"¿Cuál es el máximo común divisor de 12 y 36?","respuestas":{"A":"6","B":"4","C":"1","D":"12","solucion":"D"}},{"id_pregunta":6,"enunciado":"¿Cuánto es el cuadrado de x menos el cuadrado de x-1?  ","respuestas":{"A":"0","B":"2x-1","C":"1","D":"x","solucion":"B"}}]', 50, 30, 'Descripción examen Aritmética para niños');
 
 
-INSERT INTO usuario VALUES (NULL, "11223344A","Carlos", "Cabot", NULL, "1988-07-28", "rickroll.jpg", "carloscabotdp@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344B", "Irene", "Giró", NULL, "1991-05-12", "wonder.png", "irene.giroparadell@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344C","Antony", "Medina", NULL, "1991-05-12", "gates.jpg","iantony.01.1991@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344D", "Stanka", "Asenova", NULL, "1991-05-12", "wonder.png", "ctahka@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344E", "Daniel", "Colomer", NULL, "1991-05-12", "gates.jpg", "colomertrave@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344F", "Daniel", "Sanchez", NULL, "1991-05-12", "gates.jpg", "dsbdn21@gmail.com", "12345", false );
-INSERT INTO usuario VALUES (NULL, "11223344G", "Samuel", "Allasia", NULL, "1991-05-12", "gates.jpg", "samuelallasia@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344A","Carlos", "Cabot", NULL, "1988-07-28", "rickroll.jpg", "carlos@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344B", "Irene", "Giró", NULL, "1991-05-12", "wonder.png", "irene@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344C","Antony", "Medina", NULL, "1991-05-12", "gates.jpg","antony@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344D", "Stanka", "Asenova", NULL, "1991-05-12", "wonder.png", "stanka@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344E", "Daniel", "Colomer", NULL, "1991-05-12", "gates.jpg", "colomer@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344F", "Daniel", "Sanchez", NULL, "1991-05-12", "gates.jpg", "sanchez@gmail.com", "12345", false );
+INSERT INTO usuario VALUES (NULL, "11223344G", "Samuel", "Allasia", NULL, "1991-05-12", "gates.jpg", "samuel@gmail.com", "12345", false );
 INSERT INTO usuario VALUES (NULL, "11223344X","Super", "Admin", NULL, "1988-07-28", "nemo.png", "admin@gmail.com", "12345", true );
 
 INSERT INTO evaluacion VALUES (NULL, 1, "2016-12-19 23:59:59", 3);

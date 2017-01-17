@@ -30,7 +30,7 @@
                     </ul>
                     <ul class="nav nav-sidebar">
                         <li id="li_realizar"><a href="realizar_examen.php"><i class="fa fa-pencil" aria-hidden="true"></i> Realizar examen</a></li>
-                        <li id="li_ver"><a href="ver_examenes.php"><i class="fa fa-files-o" aria-hidden="true"></i> Ver exámenes</a></li>
+                        <li id="li_ver"><a href="ver_examenes.php"><i class="fa fa-files-o" aria-hidden="true"></i> Mis exámenes</a></li>
                     </ul>
                 </div>
                 <!--/span-->

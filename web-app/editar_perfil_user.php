@@ -9,14 +9,17 @@
         <hr>
         <div class="row">
             <!-- left column -->
-            <div class="col-md-3">                
-                    <div id="pic_container">
-                        <img id="user_photo" src="../img/users/<?php echo $_SESSION['user_img'];?>" alt="User profile pic">                        
-                    </div>
-                    <h6 id="profile_pic_name"><?php echo $_SESSION['user_img'];?></h6>   
-                    <input type="file" class="btn btn-default" name="fileToUpload" id="fileToUpload" required style="width: 100%;margin-bottom:5px;"> 
+            <div class="col-md-3">
+                <div id="pic_container">
+                    <img id="user_photo" src="../img/users/<?php echo $_SESSION['user_img'];?>" alt="User profile pic">                        
+                </div>
+                <h6 id="profile_pic_name"><?php echo $_SESSION['user_img'];?></h6>   
+                <form method="POST" action="../src/public/upload" enctype="multipart/form-data" style="text-align:center">
+						<input type="file" class="btn btn-default" name="fileToUpload" id="fileToUpload" required style="width: 100%;margin-bottom:5px;">
+						<button type="submit" class="btn btn-primary">Actualizar foto</button>
+				</form> 
             </div>
-
+            
             <!-- edit form column -->
             <div class="col-md-9 personal-info">
                 <div class="alert alert-info alert-dismissable">

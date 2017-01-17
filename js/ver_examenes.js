@@ -67,7 +67,7 @@ function showTableExamenes(data) {
         else {
             tableBody += '<i style="color:red; font-size:16px;" class="fa fa-times-circle'
         }
-        tableBody += '" aria-hidden="true"></i></td>' + '<td>' + notaProcesada + '</td>' + '<td>' + '<a href="' + '#' + '" id="' + value.id_examen + '" class="verDetalle">Ver</a>' + '</td>';
+        tableBody += '" aria-hidden="true"></i></td>' + '<td>' + notaProcesada + '</td>' + '<td>' + '<a href="' + '#' + '" id="' + value.id_examen + '" class="verDetalle"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a>' + '</td>';
     })
     tableBody += '</tbody>';
     var examenesTable = tableHead + tableBody;
@@ -114,7 +114,7 @@ function showDetalle(objeto) {
     tableHead += '</thead>';
     var tableBody = '<tbody>';
     $.each(objeto, function (index, value) {
-        tableBody += '<tr>' + '<td>' + value.id_pregunta + '</td>' + '<td>' + value.enunciado + '</td>' + '<td>' + value.respuesta +" : "+ value.respuesta_texto +  '</td>' + '<td> ';
+        tableBody += '<tr>' + '<td>' + value.id_pregunta + '</td>' + '<td>' + value.enunciado + '</td>' + '<td>' + value.respuesta +" : "+ value.respuesta_texto +  '</td>' + '<td style="text-align: center;"> ';
         if (value.correcto == 'SÍ') {
             tableBody += '<i style="color:green; font-size:16px;" class="fa fa-check-circle'
         }
